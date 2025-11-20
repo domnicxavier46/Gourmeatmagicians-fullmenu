@@ -9,8 +9,9 @@
   <meta property="og:title" content="Gourmeat Magicians — Full Menu" />
   <meta property="og:description" content="Healthy • Bold • Authentic — premium bowls, wraps & combos." />
   <meta property="og:type" content="website" />
-  <!-- Favicon (uses uploaded logo path) -->
-  <link rel="icon" href="/mnt/data/logo.png.png" type="image/png" />
+
+  <!-- Favicon (uses uploaded logo at repo root) -->
+  <link rel="icon" href="logo.png" type="image/png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -24,16 +25,16 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; background:var(--bg); color:var(--muted); font-family:Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased;}
     a{ color:inherit; text-decoration:none }
-    /* Watermark / background accent using logo */
+    /* Watermark / background accent using repo-root logo */
     .watermark {
       position:fixed; inset:0; pointer-events:none; z-index:-2;
-      background-image: url('/mnt/data/logo.png.png');
+      background-image: url('logo.png');
       background-position: center 40%; background-repeat:no-repeat;
       background-size: 720px;
       opacity:0.04; filter:grayscale(100%); transform: rotate(-18deg);
     }
 
-    /* Header */
+    /* Topbar / Sticky Nav */
     .topbar {
       position:sticky; top:0; z-index:60; backdrop-filter: blur(6px);
       background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.12));
@@ -121,8 +122,8 @@
   <header class="topbar" role="banner">
     <div class="nav-wrap">
       <div class="brand">
-        <!-- logo uses your uploaded file path -->
-        <img src="/mnt/data/logo.png.png" alt="Gourmeat Magicians logo" />
+        <!-- logo in repo root -->
+        <img src="logo.png" alt="Gourmeat Magicians logo" />
         <div>
           <h1>GOURMEAT MAGICIANS</h1>
           <p class="muted">Healthy • Bold • Authentic</p>
@@ -155,7 +156,7 @@
 
       <div class="hero-right">
         <div id="logoCard" class="logo-card" aria-hidden="true">
-          <img src="/mnt/data/logo.png.png" alt="Gourmeat Magicians logo large" />
+          <img src="logo.png" alt="Gourmeat Magicians logo large" />
         </div>
       </div>
     </section>
@@ -316,7 +317,7 @@
 
         <article class="card">
           <div class="title">Garlic Butter Falafel Bites</div>
-          <div class="desc">Garlic Butter falafel bites.</div>
+          <div class="desc">Garlic butter falafel bites.</div>
           <div class="price-row"><div>Half</div><div class="price">₹120</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹190</div></div>
         </article>
@@ -408,7 +409,7 @@
           const el = document.querySelector(href);
           if(el){
             e.preventDefault();
-            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behaviour: 'smooth' });
+            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
           }
         });
       });
