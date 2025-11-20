@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gourmeat Magicians – Full Menu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --dark-red: #8B0000;
+  --black: #000;
+  --white: #fff;
+  --muted: #cfcfcf;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Montserrat, Arial, sans-serif;
+  background: #070707;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* Watermark BG */
+.watermark-bg {
+  position: fixed;
+  top: -50px;
+  left: -50px;
+  width: 140%;
+  height: 140%;
+  background-image: url('logo.png');
+  background-size: 520px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  transform: rotate(-22deg);
+  filter: grayscale(100%);
+  pointer-events: none;
+  z-index: -5;
+}
+
+/* Floating corner logo */
+.corner-watermark {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 100px;
+  opacity: 0.16;
+  animation: floatLogo 7s ease-in-out infinite;
+  z-index: 30;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.2));
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* Header */
+.header {
+  background: linear-gradient(180deg, rgba(139,0,0,0.95), rgba(0,0,0,0.95));
+  padding: 40px 20px;
+  text-align: center;
+}
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+.header p {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 18px;
+}
+
+/* Section Title */
+.section-title {
+  margin: 25px 0 8px;
+  padding-left: 6px;
+  border-left: 6px solid var(--dark-red);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Grid Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #0c0c0c;
+  border: 1px solid #141414;
+  padding: 16px;
+  border-radius: 10px;
+}
+.card .title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+.card .desc {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #222;
+  margin-top: 6px;
+  padding-top: 6px;
+  color: var(--muted);
+}
+.price-row div:last-child {
+  color: var(--dark-red);
+  font-weight: 700;
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  padding: 20px;
+  text-align: center;
+  color: #bbb;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="watermark-bg"></div>
+<img src="logo.png" class="corner-watermark">
+
+<header class="header">
+  <h1>GOURMEAT MAGICIANS</h1>
+  <p>FULL MENU ✨ • Healthy • Bold • Authentic</p>
+</header>
+
+<main class="container">
+
+<!-- POWER BOWLS -->
+<h2 class="section-title">POWER BOWLS</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Power Protein Bowl 🥩</div>
+    <div class="desc">Slow-cooked protein + quinoa rice + exotic roasted veggies.</div>
+    <div class="price-row"><div>Half</div><div>₹230</div></div>
+    <div class="price-row"><div>Full</div><div>₹390</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Lean Green Bowl 🥬</div>
+    <div class="desc">Low-fat greens + herbed protein.</div>
+    <div class="price-row"><div>Half</div><div>₹210</div></div>
+    <div class="price-row"><div>Full</div><div>₹360</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Magician’s Signature Mix Bowl ✨</div>
+    <div class="desc">Signature slow-cooked protein + veggie blend.</div>
+    <div class="price-row"><div>Half</div><div>₹250</div></div>
+    <div class="price-row"><div>Full</div><div>₹420</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">High-Heat Sriracha Bowl 🌶️</div>
+    <div class="desc">Spicy sriracha protein bowl.</div>
+    <div class="price-row"><div>Half</div><div>₹230</div></div>
+    <div class="price-row"><div>Full</div><div>₹380</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Teriyaki Fitness Bowl 🍱</div>
+    <div class="desc">Sweet–savory fusion.</div>
+    <div class="price-row"><div>Half</div><div>₹240</div></div>
+    <div class="price-row"><div>Full</div><div>₹400</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Mediterranean Chickpea & Protein Bowl 🧆</div>
+    <div class="desc">Chickpeas + herbs + protein.</div>
+    <div class="price-row"><div>Half</div><div>₹220</div></div>
+   <div class="price-row"><div>Full</div><div>₹370</div></div>
+  </div>
+
+</div>
+
+
+<!-- WRAPS -->
+<h2 class="section-title">WRAP MASTERS</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Classic Protein Wrap 🌯</div>
+    <div class="desc">Whole-grain wrap + grilled protein + greens.</div>
+    <div class="price-row"><div>Half</div><div>₹180</div></div>
+    <div class="price-row"><div>Full</div><div>₹260</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Magician’s Loaded Wrap 🔥</div>
+    <div class="desc">Double protein + signature sauce.</div>
+    <div class="price-row"><div>Half</div><div>₹200</div></div>
+    <div class="price-row"><div>Full</div><div>₹290</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Peri-Peri Crunch Wrap 🌶️</div>
+    <div class="desc">Peri-peri grilled flavour.</div>
+    <div class="price-row"><div>Half</div><div>₹190</div></div>
+    <div class="price-row"><div>Full</div><div>₹280</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Greek Fusion Wrap 🇬🇷</div>
+    <div class="desc">Mediterranean herbs + protein.</div>
+    <div class="price-row"><div>Half</div><div>₹200</div></div>
+    <div class="price-row"><div>Full</div><div>₹300</div></div>
+  </div>
+
+</div>
+
+
+<!-- FITNESS COMBOS -->
+<h2 class="section-title">FITNESS COMBOS</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Lean Protein Combo 🏋️</div>
+    <div class="desc">Half bowl + smoothie.</div>
+    <div class="price-row"><div>Half</div><div>₹240</div></div>
+    <div class="price-row"><div>Full</div><div>₹380</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Muscle Gain Combo 💥</div>
+    <div class="desc">High-protein bowl + smoothie.</div>
+    <div class="price-row"><div>Half</div><div>₹260</div></div>
+    <div class="price-row"><div>Full</div><div>₹420</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Athlete Recovery Meal ⚡</div>
+    <div class="desc">Anti-inflammatory recovery bowl.</div>
+    <div class="price-row"><div>Half</div><div>₹280</div></div>
+    <div class="price-row"><div>Full</div><div>₹450</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Keto Performance Plate 🥑</div>
+    <div class="desc">Low-carb protein plate.</div>
+    <div class="price-row"><div>Half</div><div>₹270</div></div>
+    <div class="price-row"><div>Full</div><div>₹430</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Carb-Load Athlete Bowl 🍚</div>
+    <div class="desc">Carb-heavy performance fuel.</div>
+    <div class="price-row"><div>Half</div><div>₹260</div></div>
+    <div class="price-row"><div>Full</div><div>₹420</div></div>
+  </div>
+
+</div>
+
+
+<!-- SMALL BITES -->
+<h2 class="section-title">SMALL BITES & ADD-ONS</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Magician’s Mini Protein Shots</div>
+    <div class="desc">Tender marinated protein + dips.</div>
+    <div class="price-row"><div>Half</div><div>₹130</div></div>
+    <div class="price-row"><div>Full</div><div>₹200</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Crispy Veg Bites</div>
+    <div class="desc">Crunchy veg bites with seasoning.</div>
+    <div class="price-row"><div>Half</div><div>₹100</div></div>
+    <div class="price-row"><div>Full</div><div>₹160</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Qatar-Style Mini Burger Cup 🍔</div>
+    <div class="desc">2 or 4 piece mini burgers + dips.</div>
+    <div class="price-row"><div>Half (2 pcs)</div><div>₹140</div></div>
+    <div class="price-row"><div>Full (4 pcs)</div><div>₹230</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Chips Bag</div>
+    <div class="desc">Lays / Doritos / Too Yumm.</div>
+    <div class="price-row"><div>Each</div><div>₹40–₹60</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Garlic Butter Falafel Bites</div>
+    <div class="desc">Garlic-butter tossed falafel bites.</div>
+    <div class="price-row"><div>Half</div><div>₹120</div></div>
+    <div class="price-row"><div>Full</div><div>₹190</div></div>
+  </div>
+
+</div>
+
+
+<!-- DRINKS -->
+<h2 class="section-title">BEVERAGES • SMOOTHIES • DETOX</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Power Protein Smoothie</div>
+    <div class="desc">Banana • Greek Yogurt • Whey.</div>
+    <div class="price-row"><div>Half</div><div>₹130</div></div>
+    <div class="price-row"><div>Full</div><div>₹200</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Fresh Detox Cooler</div>
+    <div class="desc">Mint • Lemon • Cucumber.</div>
+    <div class="price-row"><div>Half</div><div>₹90</div></div>
+    <div class="price-row"><div>Full</div><div>₹150</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Berry Blast Smoothie</div>
+    <div class="desc">Blueberries • Yogurt • Honey.</div>
+    <div class="price-row"><div>Half</div><div>₹140</div></div>
+    <div class="price-row"><div>Full</div><div>₹210</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Green Magic Detox Elixir</div>
+    <div class="desc">Spinach • Kiwi • Lemon.</div>
+    <div class="price-row"><div>Half</div><div>₹120</div></div>
+    <div class="price-row"><div>Full</div><div>₹180</div></div>
+  </div>
+
+</div>
+
+
+<!-- TREATS -->
+<h2 class="section-title">TREATS</h2>
+<div class="grid">
+
+  <div class="card">
+    <div class="title">Magician’s Bliss Cup</div>
+    <div class="desc">Sweet, creamy indulgent cup.</div>
+    <div class="price-row"><div>Half</div><div>₹80</div></div>
+    <div class="price-row"><div>Full</div><div>₹120</div></div>
+  </div>
+
+  <div class="card">
+    <div class="title">Cocoa Oat Mini Cup</div>
+    <div class="desc">Cocoa + oats + honey.</div>
+    <div class="price-row"><div>Half</div><div>₹90</div></div>
+    <div class="price-row"><div>Full</div><div>₹140</div></div>
+  </div>
+
+</div>
+
+</main>
+
+<footer class="footer">
+  © 2025 Gourmeat Magicians • Healthy • Bold • Authentic
+</footer>
+
+</body>
+</html>
