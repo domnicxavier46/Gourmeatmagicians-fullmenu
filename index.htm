@@ -3,126 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gourmeat Magicians — Full Menu</title>
-  <meta name="description" content="Gourmeat Magicians — Healthy • Bold • Authentic. Premium bowls, wraps, combos & smoothies crafted for performance and flavour." />
-  <meta name="keywords" content="Gourmeat, Magicians, Healthy bowls, protein bowls, wraps, fitness combos, smoothies" />
-  <meta property="og:title" content="Gourmeat Magicians — Full Menu" />
-  <meta property="og:description" content="Healthy • Bold • Authentic — premium bowls, wraps & combos." />
+  <title>Gourmeat Magicians — Full Menu (Seafood Edition)</title>
+  <meta name="description" content="Gourmeat Magicians — Healthy • Bold • Authentic. Premium bowls, wraps, combos & smoothies with high-protein seafood options (tuna, salmon, prawns, calamari)." />
+  <meta name="keywords" content="Gourmeat, Magicians, seafood bowls, tuna, salmon, prawns, calamari, healthy bowls, fitness food" />
+  <meta property="og:title" content="Gourmeat Magicians — Full Menu (Seafood Edition)" />
+  <meta property="og:description" content="Premium high-protein seafood options added across all menu sections." />
   <meta property="og:type" content="website" />
 
-  <!-- Favicon (uses uploaded logo at repo root) -->
   <link rel="icon" href="logo.png" type="image/png" />
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#070707; --card:#0c0c0c; --muted:#bdbdbd; --accent:#e33a3a; --glass:rgba(255,255,255,0.04);
-      --glass-strong: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.04);
-    }
-    [data-theme="light"]{ --bg:#fbfbfb; --card:#ffffff; --muted:#666; --accent:#b30000; --glass:rgba(0,0,0,0.04); --glass-strong:rgba(0,0,0,0.06); --glass-border: rgba(0,0,0,0.06); color:#111; }
+    :root{ --bg:#070707; --card:#0c0c0c; --muted:#bdbdbd; --accent:#8B0000; --glass:rgba(255,255,255,0.04); }
+    [data-theme="light"]{ --bg:#fbfbfb; --card:#fff; --muted:#444; --accent:#8B0000; color:#111; }
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; background:var(--bg); color:var(--muted); font-family:Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased;}
     a{ color:inherit; text-decoration:none }
-    /* Watermark / background accent using repo-root logo */
-    .watermark {
-      position:fixed; inset:0; pointer-events:none; z-index:-2;
-      background-image: url('logo.png');
-      background-position: center 40%; background-repeat:no-repeat;
-      background-size: 720px;
-      opacity:0.04; filter:grayscale(100%); transform: rotate(-18deg);
-    }
 
-    /* Topbar / Sticky Nav */
-    .topbar {
-      position:sticky; top:0; z-index:60; backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.12));
-      border-bottom:1px solid var(--glass-border);
-    }
+    /* Watermark */
+    .watermark{ position:fixed; inset:0; pointer-events:none; z-index:-2; background-image:url('logo.png'); background-position:center 40%; background-repeat:no-repeat; background-size:720px; opacity:0.04; filter:grayscale(100%); transform:rotate(-18deg); }
+
+    /* Topbar */
+    .topbar{ position:sticky; top:0; z-index:60; backdrop-filter: blur(6px); background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.12)); border-bottom:1px solid rgba(255,255,255,0.04);} 
     .nav-wrap{ max-width:1100px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; gap:12px; justify-content:space-between; }
-    .brand { display:flex; gap:12px; align-items:center; }
-    .brand img{ width:62px; height:62px; object-fit:contain; border-radius:10px; box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
-    .brand h1{ margin:0; font-size:18px; color:var(--accent); letter-spacing:1px; font-weight:700; text-transform:uppercase;}
-    .brand p{ margin:0; font-size:12px; color:var(--muted) }
-
-    .nav { display:flex; gap:10px; align-items:center; }
+    .brand{ display:flex; gap:12px; align-items:center; }
+    .brand img{ width:64px; height:64px; object-fit:contain; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.5); }
+    .brand h1{ margin:0; font-size:18px; color:var(--accent); letter-spacing:1px; font-weight:700; text-transform:uppercase; }
+    .brand p{ margin:0; font-size:12px; color:var(--muted); }
+    .nav{ display:flex; gap:10px; align-items:center; }
     .nav a{ color:var(--muted); padding:8px 12px; border-radius:8px; font-size:14px; }
     .nav a:hover{ background:var(--glass); color:var(--accent); }
-
-    /* Theme toggle */
     .controls{ display:flex; gap:10px; align-items:center; }
-    .theme-toggle{ background:transparent; border:1px solid var(--glass-border); padding:8px 10px; border-radius:8px; cursor:pointer; color:var(--muted); }
+    .theme-toggle{ background:transparent; border:1px solid rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px; cursor:pointer; color:var(--muted); }
 
     /* Hero */
-    .hero {
-      max-width:1100px; margin:28px auto; padding:28px; border-radius:14px; overflow:hidden;
-      display:grid; grid-template-columns: 1fr 420px; gap:20px; align-items:center;
-      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.08));
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-    [data-theme="light"] .hero{ background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)); border:1px solid rgba(0,0,0,0.03); }
+    .hero{ max-width:1100px; margin:28px auto; padding:28px; border-radius:14px; overflow:hidden; display:grid; grid-template-columns:1fr 420px; gap:20px; align-items:center; background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.08)); border:1px solid rgba(255,255,255,0.03); }
     .hero-left{ padding:10px 16px; }
     .badge{ display:inline-block; background:var(--accent); color:#fff; padding:8px 12px; border-radius:22px; font-weight:700; font-size:13px; }
-    .hero-left h2{ margin:12px 0 6px; color: #fff; font-size:28px; letter-spacing:0.6px; line-height:1.05; text-shadow: 0 6px 18px rgba(0,0,0,0.6) }
+    .hero-left h2{ margin:12px 0 6px; color:#fff; font-size:28px; letter-spacing:0.6px; line-height:1.05; }
     .hero-left p{ margin:8px 0 0; color:var(--muted); font-size:14px; }
-    .hero-cta{ margin-top:14px; display:flex; gap:10px; align-items:center; }
-
-    /* Parallax / logo card on right */
     .hero-right{ position:relative; display:flex; align-items:center; justify-content:center; min-height:220px; }
-    .logo-card{
-      width:320px; height:180px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18));
-      border:1px solid rgba(255,255,255,0.03); box-shadow: 0 18px 40px rgba(0,0,0,0.6);
-      transform: translateY(0px);
-      transition: transform 0.9s cubic-bezier(.2,.9,.3,1);
-    }
+    .logo-card{ width:320px; height:180px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.18)); border:1px solid rgba(255,255,255,0.03); box-shadow:0 18px 40px rgba(0,0,0,0.6); }
     .logo-card img{ max-width:260px; max-height:140px; display:block; }
 
-    /* Section title */
-    .section { max-width:1100px; margin:28px auto; padding:0 18px; }
-    .section-title { display:flex; align-items:center; gap:12px; font-size:18px; color:#fff; margin-bottom:12px; }
+    /* Sections */
+    .section{ max-width:1100px; margin:28px auto; padding:0 18px; }
+    .section-title{ display:flex; align-items:center; gap:12px; font-size:18px; color:#fff; margin-bottom:12px; }
     .section-title::before{ content:""; width:6px; height:28px; background:var(--accent); border-radius:3px; display:inline-block; }
 
     /* Grid + cards */
-    .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
-    .card {
-      background: var(--card); border:1px solid var(--glass-border); padding:14px; border-radius:12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-      transform: translateY(0); transition: transform .35s ease, box-shadow .35s ease, opacity .6s ease;
-      opacity: 0; will-change: transform, opacity;
-    }
-    .card.visible { opacity:1; transform: translateY(0); }
-    .card:hover{ transform: translateY(-10px) scale(1.01); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
-    .card .title{ font-weight:700; color: #fff; margin-bottom:6px; font-size:15px; }
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+    .card{ background:var(--card); border:1px solid rgba(255,255,255,0.04); padding:14px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.5); transform:translateY(0); transition:transform .35s ease, box-shadow .35s ease, opacity .6s ease; opacity:0; }
+    .card.visible{ opacity:1; transform:translateY(0); }
+    .card:hover{ transform: translateY(-10px) scale(1.01); box-shadow:0 24px 60px rgba(0,0,0,0.6); }
+    .card .title{ font-weight:700; color:#fff; margin-bottom:6px; font-size:15px; }
     .card .desc{ color:var(--muted); font-size:13px; margin-bottom:10px; }
     .price-row{ display:flex; justify-content:space-between; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.03); color:var(--muted); }
     .price-row .price{ color:var(--accent); font-weight:700; }
 
-    /* Footer */
     footer.footer{ text-align:center; padding:28px; color:var(--muted); font-size:13px; }
 
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{ grid-template-columns: 1fr; padding:18px; }
-      .hero-right{ order:-1; padding-bottom:12px; }
-      .brand img{ width:50px; height:50px; }
-    }
-
-    /* small helper */
-    .muted{ color:var(--muted); font-size:13px; }
-
+    @media (max-width:900px){ .hero{ grid-template-columns:1fr; padding:18px; } .hero-right{ order:-1; padding-bottom:12px; } .brand img{ width:50px; height:50px; } }
   </style>
 </head>
 <body>
 
   <div class="watermark" aria-hidden="true"></div>
 
-  <!-- Topbar / Sticky Nav -->
+  <!-- Topbar -->
   <header class="topbar" role="banner">
     <div class="nav-wrap">
       <div class="brand">
-        <!-- logo in repo root -->
         <img src="logo.png" alt="Gourmeat Magicians logo" />
         <div>
           <h1>GOURMEAT MAGICIANS</h1>
@@ -136,6 +87,7 @@
         <a href="#combos">Combos</a>
         <a href="#bites">Bites</a>
         <a href="#drinks">Drinks</a>
+        <a href="#treats">Treats</a>
       </nav>
 
       <div class="controls">
@@ -148,9 +100,9 @@
   <main>
     <section class="hero" aria-label="Intro section">
       <div class="hero-left">
-        <span class="badge">NEW • FULL MENU</span>
-        <h2>Premium nutritious bowls, wraps & fitness combos</h2>
-        <p class="muted">Slow-cooked proteins, exotic veggies and chef-crafted sauces — made for gym-goers, IT professionals and everyone who values flavour and health.</p>
+        <span class="badge">NEW • SEAFOOD EDITION</span>
+        <h2>Premium nutritious bowls, wraps & fitness combos — now with high-protein seafood</h2>
+        <p class="muted">Tuna, Salmon, Prawns and Calamari options across bowls, wraps and combos — crafted for taste and performance.</p>
         <p class="muted" style="margin-top:10px;">Portions: Half (~350g) & Full (~500g) • Service time: ≤15 mins</p>
       </div>
 
@@ -173,38 +125,31 @@
         </article>
 
         <article class="card">
-          <div class="title">Lean Green Bowl 🥬</div>
-          <div class="desc">Low-fat greens, herbed protein and light dressing.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹210</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹360</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Magician’s Signature Mix Bowl ✨</div>
-          <div class="desc">Signature slow-cooked duck/chicken + exotic veg blend.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹250</div></div>
+          <div class="title">Ocean Power Tuna Bowl 🐟</div>
+          <div class="desc">Seared tuna, quinoa, roasted veggies, lemon-pepper glaze — high-protein ocean fuel.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹260</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹420</div></div>
         </article>
 
         <article class="card">
-          <div class="title">High-Heat Sriracha Bowl 🌶️</div>
-          <div class="desc">Sriracha-spiced protein bowl.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹230</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹380</div></div>
+          <div class="title">Salmon Omega Fitness Bowl 🐠</div>
+          <div class="desc">Grilled salmon, brown rice, herb drizzle, antioxidant veg blend.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹290</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹480</div></div>
         </article>
 
         <article class="card">
-          <div class="title">Teriyaki Fitness Bowl 🍱</div>
-          <div class="desc">Sweet–savory teriyaki fusion.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹240</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹400</div></div>
+          <div class="title">Prawn High-Heat Sriracha Bowl 🦐</div>
+          <div class="desc">Sriracha prawns, zucchini, peppers and protein-packed spice mix.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹270</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹440</div></div>
         </article>
 
         <article class="card">
-          <div class="title">Mediterranean Chickpea & Protein Bowl 🧆</div>
-          <div class="desc">Chickpeas + protein + olive herb mix.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹220</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹370</div></div>
+          <div class="title">Calamari Lean Bowl 🦑</div>
+          <div class="desc">Grilled calamari, garlic-herb seasoning, clean veg medley.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹250</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹410</div></div>
         </article>
       </div>
     </section>
@@ -221,24 +166,24 @@
         </article>
 
         <article class="card">
-          <div class="title">Magician’s Loaded Wrap 🔥</div>
-          <div class="desc">Double protein + signature sauce + crunchy veggies.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹200</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹290</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Peri-Peri Crunch Wrap 🌶️</div>
-          <div class="desc">Peri-peri grilled mix.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹190</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹280</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Greek Fusion Wrap 🇬🇷</div>
-          <div class="desc">Mediterranean protein + herbs.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹200</div></div>
+          <div class="title">Tuna Loaded Wrap 🐟</div>
+          <div class="desc">Whole-grain wrap, tuna chunks, crisp greens and signature fit sauce.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹210</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹300</div></div>
+        </article>
+
+        <article class="card">
+          <div class="title">Spicy Prawn Crunch Wrap 🔥</div>
+          <div class="desc">Peri-peri prawns, slaw, crunch and light mayo.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹220</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹310</div></div>
+        </article>
+
+        <article class="card">
+          <div class="title">Lemon Pepper Salmon Wrap 🍋</div>
+          <div class="desc">Flaky salmon, citrus glaze and high-protein yogurt base.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹230</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹320</div></div>
         </article>
       </div>
     </section>
@@ -255,31 +200,24 @@
         </article>
 
         <article class="card">
-          <div class="title">Muscle Gain Combo 💥</div>
-          <div class="desc">High-protein bowl + power smoothie for heavy workout days.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹260</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹420</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Athlete Recovery Meal ⚡</div>
-          <div class="desc">Protein-rich anti-inflammatory recovery bowl.</div>
+          <div class="title">Lean Tuna Combo 🐟</div>
+          <div class="desc">Half tuna seafood bowl + small detox drink — lean and powerful.</div>
           <div class="price-row"><div>Half</div><div class="price">₹280</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹450</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Keto Performance Plate 🥑</div>
-          <div class="desc">Low-carb protein plate.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹270</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹430</div></div>
         </article>
 
         <article class="card">
-          <div class="title">Carb-Load Athlete Bowl 🍚</div>
-          <div class="desc">Carb-heavy for endurance days.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹260</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹420</div></div>
+          <div class="title">Prawn Muscle Gain Combo 🦐</div>
+          <div class="desc">High-protein prawn bowl + power smoothie for heavy workouts.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹300</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹460</div></div>
+        </article>
+
+        <article class="card">
+          <div class="title">Salmon Recovery Pack 🔥</div>
+          <div class="desc">Anti-inflammatory salmon bowl + ginger-mint cooler.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹320</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹500</div></div>
         </article>
       </div>
     </section>
@@ -296,30 +234,24 @@
         </article>
 
         <article class="card">
-          <div class="title">Crispy Veg Bites</div>
-          <div class="desc">Crunchy veg bites with seasoning.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹100</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹160</div></div>
+          <div class="title">Prawn Pops (High Protein Edition) 🦐</div>
+          <div class="desc">Crispy grilled prawns with herb dip.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹180</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹260</div></div>
         </article>
 
         <article class="card">
-          <div class="title">Qatar-Style Mini Burger Cup 🍔</div>
-          <div class="desc">2 or 4 viral-style mini burgers + dips.</div>
-          <div class="price-row"><div>Half (2 pcs)</div><div class="price">₹140</div></div>
-          <div class="price-row"><div>Full (4 pcs)</div><div class="price">₹230</div></div>
+          <div class="title">Tuna Mini Cakes 🐟</div>
+          <div class="desc">Pan-seared tuna mini patties with herb dip.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹150</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹230</div></div>
         </article>
 
         <article class="card">
-          <div class="title">Chips Bag</div>
-          <div class="desc">Lays / Doritos / Too Yumm — any flavour.</div>
-          <div class="price-row"><div>Each</div><div class="price">₹40–₹60</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Garlic Butter Falafel Bites</div>
-          <div class="desc">Garlic butter falafel bites.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹120</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹190</div></div>
+          <div class="title">Calamari Pepper Shots 🦑</div>
+          <div class="desc">Small calamari cubes tossed in pepper & herbs.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹170</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹240</div></div>
         </article>
       </div>
     </section>
@@ -336,24 +268,17 @@
         </article>
 
         <article class="card">
+          <div class="title">Omega-Boost Smoothie</div>
+          <div class="desc">Protein-rich smoothie - pairs well with tuna & salmon meals.</div>
+          <div class="price-row"><div>Half</div><div class="price">₹150</div></div>
+          <div class="price-row"><div>Full</div><div class="price">₹230</div></div>
+        </article>
+
+        <article class="card">
           <div class="title">Fresh Detox Cooler</div>
           <div class="desc">Mint • Lemon • Cucumber — refreshing cleanse.</div>
           <div class="price-row"><div>Half</div><div class="price">₹90</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹150</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Berry Blast Smoothie</div>
-          <div class="desc">Blueberries • Yogurt • Honey.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹140</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹210</div></div>
-        </article>
-
-        <article class="card">
-          <div class="title">Green Magic Detox Elixir</div>
-          <div class="desc">Spinach • Kiwi • Lemon.</div>
-          <div class="price-row"><div>Half</div><div class="price">₹120</div></div>
-          <div class="price-row"><div>Full</div><div class="price">₹180</div></div>
         </article>
       </div>
     </section>
@@ -367,6 +292,12 @@
           <div class="desc">Sweet, creamy indulgent cup.</div>
           <div class="price-row"><div>Half</div><div class="price">₹80</div></div>
           <div class="price-row"><div>Full</div><div class="price">₹120</div></div>
+        </article>
+
+        <article class="card">
+          <div class="title">Dark Protein Brownie 🍫</div>
+          <div class="desc">High-protein dessert — pairs well after seafood meals.</div>
+          <div class="price-row"><div>Price</div><div class="price">₹120</div></div>
         </article>
 
         <article class="card">
@@ -387,13 +318,12 @@
   <script>
     // Theme toggle (persist)
     (function(){
-      const root = document.documentElement;
-      const btn = document.getElementById('themeToggle');
       const key = 'gm-theme';
+      const btn = document.getElementById('themeToggle');
       const saved = localStorage.getItem(key) || (window.matchMedia && window.matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark');
       document.documentElement.setAttribute('data-theme', saved);
       btn.textContent = saved === 'light' ? 'Light' : 'Dark';
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', ()=>{
         const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', current);
         localStorage.setItem(key, current);
@@ -401,41 +331,27 @@
       });
     })();
 
-    // Smooth scroll for nav anchors
+    // Smooth scroll
     (function(){
       document.querySelectorAll('a[href^="#"]').forEach(a=>{
         a.addEventListener('click', e=>{
           const href = a.getAttribute('href');
           const el = document.querySelector(href);
-          if(el){
-            e.preventDefault();
-            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
-          }
+          if(el){ e.preventDefault(); window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior:'smooth' }); }
         });
       });
     })();
 
-    // Intersection Observer to reveal cards
+    // Reveal cards
     (function(){
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },{threshold:0.12});
-      document.querySelectorAll('.card').forEach(c => io.observe(c));
+      const io = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); }); },{threshold:0.12});
+      document.querySelectorAll('.card').forEach(c=> io.observe(c));
     })();
 
-    // Subtle parallax on hero logo-card based on scroll
+    // Subtle hero logo parallax
     (function(){
       const card = document.getElementById('logoCard');
-      let last = 0;
-      const tick = () => {
-        const y = window.scrollY;
-        const diff = (y - last) * 0.06;
-        last += diff;
-        if(card) card.style.transform = `translateY(${Math.min(20, last * 0.12)}px)`;
-        requestAnimationFrame(tick);
-      };
+      let last=0; const tick=()=>{ const y=window.scrollY; const diff=(y-last)*0.06; last+=diff; if(card) card.style.transform = `translateY(${Math.min(20,last*0.12)}px)`; requestAnimationFrame(tick); };
       requestAnimationFrame(tick);
     })();
   </script>
