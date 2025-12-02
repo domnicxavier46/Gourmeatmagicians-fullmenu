@@ -3,33 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GOURMEAT MAGICIAN'S — Menu</title>
+  <title>GOURMEAT MAGICIAN'S — Menu (Premium)</title>
   <meta name="description" content="GOURMEAT MAGICIAN'S — Magic-themed healthy bowls, smoothies & beverages. Dommasandra (ITPL) launch menu." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0f1115;                 /* dark bg */
-      --panel:#0f1216;
-      --muted:#9aa3b2;
-      --accent:#e6b24a;             /* gold accent */
-      --accent-2:#6de0c8;           /* mint accent */
-      --card:#111318;
-      --glass: rgba(255,255,255,0.03);
-      --logo-url: url('logo.png');  /* put your logo file here (same folder) */
-      --radius: 12px;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      --bg:#0b0c0f;
+      --panel:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --muted:#98a4b2;
+      --accent:#e6b24a;       /* gold */
+      --accent-2:#6de0c8;     /* mint */
+      --glass: rgba(255,255,255,0.04);
+      --card:#0f1116;
+      --logo-url: url('logo.png');
+      --radius: 14px;
+      --maxw:1200px;
+      --glass-border: rgba(255,255,255,0.03);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans";
     }
-
-    /* Light theme vars (applied when .light on body) */
     body.light{
-      --bg:#f7f7f8;
-      --panel:#ffffff;
-      --muted:#6b7280;
+      --bg:#fbfbfc;
+      --muted:#596270;
       --accent:#b06d1f;
       --accent-2:#0ea5a3;
       --card:#ffffff;
-      --glass: rgba(16,16,16,0.03);
+      --glass: rgba(0,0,0,0.03);
     }
 
     *{box-sizing:border-box}
@@ -37,528 +36,544 @@
     body{
       margin:0;
       min-height:100%;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(230,178,74,0.04), transparent),
-                  radial-gradient(900px 400px at 95% 90%, rgba(109,224,200,0.03), transparent),
-                  var(--bg);
-      color: #e9eef3;
+      background:
+        radial-gradient(800px 300px at 8% 8%, rgba(230,178,74,0.03), transparent),
+        radial-gradient(700px 200px at 92% 92%, rgba(109,224,200,0.02), transparent),
+        var(--bg);
+      color:#eaf0f6;
+      padding:36px;
+      display:flex;
+      justify-content:center;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding:32px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      gap:28px;
-      line-height:1.35;
-      transition:background .3s ease, color .3s ease;
+      transition: background .35s ease, color .25s ease;
     }
 
-    /* watermark */
+    /* watermark with subtle parallax & blend */
     .watermark {
       position:fixed;
       inset:0;
       pointer-events:none;
       z-index:0;
+      display:block;
     }
     .watermark::before{
       content:"";
       position:absolute;
-      inset:-10%;
+      inset:-8%;
       background-image: var(--logo-url);
       background-repeat:no-repeat;
-      background-position: center calc(50% + 40px);
-      background-size: 60vmin;
-      opacity:0.035;
-      filter: saturate(.6) blur(.6px);
+      background-position: center 40%;
+      background-size: 68vmin;
+      opacity:0.04;
+      filter: blur(.8px) saturate(.7);
+      transform: translateZ(0);
+      transition: transform .6s cubic-bezier(.2,.9,.2,1);
+      mix-blend-mode: overlay;
     }
-    body.light .watermark::before{ opacity:0.04; filter: none; }
 
-    /* layout container */
-    .container{
+    .wrap{
       width:100%;
-      max-width:1150px;
+      max-width: var(--maxw);
       z-index:2;
       display:grid;
-      grid-template-columns: 1fr;
-      gap:20px;
+      grid-template-columns: 1fr 380px;
+      gap:28px;
       align-items:start;
     }
 
-    header{
+    header.hero{
+      grid-column: 1 / -1;
       display:flex;
-      gap:18px;
       align-items:center;
       justify-content:space-between;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 6px 30px rgba(2,6,23,0.45);
+      gap:18px;
+      padding:22px;
+      border-radius:18px;
+      background: var(--panel);
+      border:1px solid var(--glass-border);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+      position:relative;
+      overflow:hidden;
       backdrop-filter: blur(6px);
     }
 
     .brand{
       display:flex;
-      gap:14px;
+      gap:16px;
       align-items:center;
     }
     .logo{
-      width:64px;
-      height:64px;
-      border-radius:10px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,0.06);
-      background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      display:grid;
-      place-items:center;
+      width:72px; height:72px; border-radius:12px; overflow:hidden;
+      border:1px solid rgba(255,255,255,0.05);
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:grid; place-items:center;
+      transform: translateZ(0);
     }
-    .logo img{ width:100%; height:100%; object-fit:contain; opacity:0.98; }
+    .logo img{ width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6)); }
 
-    .brand h1{
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .title h1{
       margin:0;
       font-family:"Playfair Display", serif;
-      font-size:20px;
-      letter-spacing:0.6px;
+      font-size:22px;
       color:var(--accent);
+      letter-spacing:0.6px;
     }
-    .brand p{ margin:0; color:var(--muted); font-size:13px }
+    .title p{ margin:0; color:var(--muted); font-size:13px }
 
-    .actions{ display:flex; gap:12px; align-items:center }
-    .toggle{
-      background:transparent;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.04);
-      padding:8px 12px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:600;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-    }
+    .hero-actions{ display:flex; gap:12px; align-items:center; }
+
     .search{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      background:var(--glass);
-      padding:8px 12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .search input{
-      background:transparent;
-      border:0;
-      outline:0;
-      color:inherit;
-      font-size:14px;
-      width:180px;
-    }
-
-    main.grid{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
-    }
-
-    /* left menu column */
-    .menu-card{
+      display:flex; gap:8px; align-items:center;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 16px;
-      padding:20px;
-      border: 1px solid rgba(255,255,255,0.035);
-      box-shadow: 0 6px 24px rgba(2,6,23,0.45);
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
+    }
+    .search input{ background:transparent; border:0; outline:0; color:inherit; width:220px; font-size:14px; }
+
+    .theme-btn{
+      background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:9px 12px; border-radius:10px; cursor:pointer; font-weight:700;
+    }
+
+    /* left column menu */
+    .menu{
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+      border-radius:16px; padding:18px; border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.5);
       overflow:hidden;
     }
+    .section{ margin-bottom:16px; padding:8px 4px; border-bottom:1px dashed rgba(255,255,255,0.02); }
 
-    .menu-section{
-      margin-bottom:18px;
-      padding-bottom:12px;
-      border-bottom:1px dashed rgba(255,255,255,0.03);
+    .section h2{ margin:4px 0 12px 0; font-family:"Playfair Display", serif; color:var(--accent); font-size:18px; }
+    .item{
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
+      padding:10px; border-radius:12px; transition: transform .18s ease, box-shadow .18s ease;
+      position:relative; overflow:visible;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border:1px solid rgba(255,255,255,0.01);
     }
-    .menu-section h2{
-      margin:0 0 10px 0;
-      font-family:"Playfair Display", serif;
-      color:var(--accent);
-      font-size:18px;
-      letter-spacing:0.6px;
-    }
-    .menu-item{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-      padding:10px 6px;
-    }
-    .item-left{
-      max-width:72%;
-    }
-    .item-title{
-      font-weight:700;
-      font-size:15px;
-      margin:0 0 4px 0;
-    }
-    .item-desc{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .item-price{
-      font-weight:800;
-      color:#fff;
-      font-size:15px;
-      text-align:right;
-      min-width:84px;
+    .item:not(:last-child){ margin-bottom:10px; }
+
+    /* dramatic plate svg placeholder left */
+    .item .plate{
+      min-width:84px; height:84px; border-radius:12px; overflow:hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:grid; place-items:center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      transform-origin:center;
     }
 
-    /* right column: combos & promos */
-    .side{
-      position:sticky;
-      top:28px;
-      height:fit-content;
-      align-self:start;
-    }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      padding:16px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03);
-      margin-bottom:14px;
-    }
-    .promo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      background: linear-gradient(90deg, rgba(230,178,74,0.06), rgba(109,224,200,0.02));
-      padding:12px;
+    .item .meta{ flex:1; }
+    .item .meta .name{ font-weight:800; font-size:15px; margin:0 0 6px 0; letter-spacing:0.2px; }
+    .item .meta .desc{ margin:0; color:var(--muted); font-size:13px; }
+
+    .price{
+      font-weight:900; font-size:15px; min-width:78px; text-align:right; color: #fff;
+      position:relative;
+      padding:6px 8px;
       border-radius:10px;
-      border:1px solid rgba(255,255,255,0.02);
     }
-    .promo h3{ margin:0; color:var(--accent); font-size:16px }
-    .promo p{ margin:0; color:var(--muted); font-size:13px }
 
-    .combo-list .combo{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      padding:10px 6px;
+    /* shimmer effect on price */
+    .price::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.06), transparent);
+      transform: translateX(-110%);
+      animation: shimmer 3.6s linear infinite;
+      pointer-events:none;
+      opacity:.7;
     }
-    .combo .left{ max-width:68% }
-    .combo .title{font-weight:700}
-    .combo .price{ color:var(--accent-2); font-weight:800 }
+    @keyframes shimmer{ to { transform: translateX(110%); } }
 
-    footer{
-      margin-top:18px;
-      color:var(--muted);
-      font-size:13px;
+    /* hover dramatics */
+    .item:hover{
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.5) inset;
+    }
+    .item:hover .plate{ transform: rotate(-6deg) scale(1.04) translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.6); }
+
+    /* premium tag */
+    .tag{
+      position:absolute; left:12px; top:10px; font-weight:800; font-size:11px; color:var(--accent);
+      background: rgba(255,255,255,0.02); padding:6px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* right column combos */
+    aside.side{
+      position:sticky; top:36px; align-self:start;
+    }
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); margin-bottom:14px;
+    }
+    .panel h3{ margin:0 0 8px 0; color:var(--accent); font-family:Playfair Display, serif; }
+    .combo{ display:flex; justify-content:space-between; gap:10px; align-items:center; padding:8px 4px; }
+    .combo .title{ font-weight:800 }
+    .combo .price{ color:var(--accent-2); font-weight:900 }
+
+    footer.note{ color:var(--muted); font-size:13px; margin-top:8px; }
+
+    /* modal cinematic */
+    .modal{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999;
+      background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.85));
+      padding:28px;
+    }
+    .modal.open{ display:flex; }
+    .modal-card{
+      width:100%; max-width:980px; border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03); padding:22px; display:grid; grid-template-columns: 420px 1fr; gap:20px; align-items:start;
+      box-shadow: 0 30px 120px rgba(0,0,0,0.7);
+    }
+    .modal-plate{
+      height:420px; border-radius:14px; position:relative; overflow:hidden; display:grid; place-items:center;
+      background: radial-gradient(circle at 30% 20%, rgba(230,178,74,0.06), transparent), var(--card);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* cinematic smoke and glow */
+    .plate-glow{
+      position:absolute; inset:0; pointer-events:none; mix-blend-mode:screen;
+      background: radial-gradient(250px 120px at 50% 40%, rgba(230,178,74,0.06), transparent 20%),
+                  radial-gradient(230px 80px at 50% 70%, rgba(109,224,200,0.03), transparent 20%);
+      filter: blur(6px);
+    }
+    .flame{
+      position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+      width:70%; height:80px; border-radius:40px; background: linear-gradient(90deg, rgba(230,178,74,0.12), rgba(109,224,200,0.06));
+      box-shadow: 0 30px 60px rgba(230,178,74,0.06);
+      animation: floaty 4.2s ease-in-out infinite;
+      opacity:.9;
+    }
+    @keyframes floaty { 0%{ transform:translate(-50%,0) scale(1) } 50%{ transform:translate(-50%,-8px) scale(1.02) } 100%{ transform:translate(-50%,0) scale(1) } }
+
+    .modal-content h2{ margin:0 0 8px 0; font-family:Playfair Display, serif; color:var(--accent); font-size:22px; }
+    .modal-content p{ margin:0 0 10px 0; color:var(--muted) }
+
+    .ingredients{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .chip{ padding:8px 10px; border-radius:999px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.02); color:var(--muted); font-weight:700; font-size:13px; }
+
+    .cta-row{ display:flex; gap:12px; margin-top:18px; align-items:center; }
+    .btn-primary{ background: linear-gradient(90deg,var(--accent), #f0b85a); color:#081018; font-weight:900; padding:12px 16px; border-radius:12px; border: none; cursor:pointer; }
+    .btn-ghost{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:10px 12px; border-radius:10px; cursor:pointer; }
+
+    /* entrance animations */
+    .reveal{ opacity:0; transform: translateY(10px) scale(.995); transition: opacity .7s ease, transform .55s cubic-bezier(.2,.9,.2,1); will-change:opacity,transform; }
+    .reveal.inview{ opacity:1; transform: translateY(0) scale(1); }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .item, .logo img, .watermark::before, .modal-card, .plate-glow, .flame, .item:hover { transition:none !important; animation:none !important; transform:none !important; }
     }
 
     /* responsive */
-    @media (max-width:980px){
-      main.grid{ grid-template-columns: 1fr; }
-      .side{ position:static; }
-      body{ padding:18px; }
-      .brand h1{ font-size:18px }
-      .logo{ width:56px; height:56px }
+    @media (max-width:1100px){
+      .wrap{ grid-template-columns: 1fr; }
+      .modal-card{ grid-template-columns: 1fr; }
+      .modal-plate{ height:320px }
     }
     @media (max-width:520px){
-      .container{ padding:0 8px }
-      .brand p{ display:none }
-      .search input{ width:110px }
-      .item-left{ max-width:62% }
-      .item-price{ min-width:72px; font-size:14px }
+      body{ padding:18px; }
+      .logo{ width:56px; height:56px; }
+      .search input{ width:120px }
+      .item .plate{ display:none }
     }
 
-    /* small visual flourishes */
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border:1px solid rgba(255,255,255,0.03);
-      color:var(--accent);
-      font-weight:700;
-      font-size:13px;
-    }
-    .cta{
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent), #e0a846);
-      color:#081018;
-      font-weight:800;
-      padding:10px 14px;
-      border-radius:10px;
-      text-decoration:none;
-    }
-
-    /* subtle hover */
-    .menu-item:hover{ transform: translateY(-3px); transition:transform .15s ease; }
   </style>
 </head>
 <body>
   <div class="watermark" aria-hidden="true"></div>
 
-  <div class="container" role="main">
-    <header aria-label="Gourmeat Magician's header">
+  <div class="wrap" role="main" aria-label="Gourmeat Magician's menu">
+    <header class="hero" role="banner">
       <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <!-- Ensure logo.png is placed beside this HTML file in repo -->
-          <img src="logo.png" alt="Gourmeat Magician's logo" />
-        </div>
-        <div>
+        <div class="logo" aria-hidden="true"><img src="logo.png" alt="Gourmeat Magician's logo"></div>
+        <div class="title">
           <h1>GOURMEAT MAGICIAN'S</h1>
-          <p>Your Taste, Our Magic — Since 2025 · Dommasandra (ITPL)</p>
+          <p>Your Taste, Our Magic — Dommasandra (ITPL) • Healthy Bowls & Smoothies</p>
         </div>
       </div>
 
-      <div class="actions">
-        <div class="search" role="search" aria-label="Search menu">
+      <div class="hero-actions" role="search">
+        <div class="search" aria-hidden="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.9"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6.2" stroke="currentColor" stroke-width="1.6"></circle></svg>
-          <input id="search" type="search" placeholder="Search dishes, smoothies..." aria-label="Search dishes" />
+          <input id="searchInput" type="search" placeholder="Search spells, bowls, smoothies..." aria-label="Search menu items">
         </div>
-        <button class="toggle" id="themeToggle" aria-pressed="false" title="Toggle theme">🌙 Dark / Light</button>
+        <button class="theme-btn" id="themeToggle" aria-pressed="false" title="Toggle theme">Toggle Theme</button>
       </div>
     </header>
 
-    <main class="grid" aria-live="polite">
-      <!-- LEFT: Menu list -->
-      <section class="menu-card" aria-label="Menu">
-        <!-- Signature Bowls -->
-        <div class="menu-section" id="signature">
-          <h2>✨ SIGNATURE SPELL-BOWLS</h2>
+    <!-- LEFT: Menu -->
+    <section class="menu" aria-label="Menu list">
+      <!-- Signature -->
+      <div class="section reveal" id="sig-section">
+        <h2>✨ SIGNATURE SPELL-BOWLS</h2>
 
-          <article class="menu-item" data-keywords="enchanted chicken power bowl chicken bowl protein bowl">
-            <div class="item-left">
-              <p class="item-title">Enchanted Chicken Power Bowl</p>
-              <p class="item-desc">Slow-cooked chicken charm, exotic veg, choice of base & handcrafted sauce.</p>
-            </div>
-            <div class="item-price">₹369</div>
-          </article>
-
-          <article class="menu-item" data-keywords="wizard lamb fuel bowl lamb bowl slow cooked lamb">
-            <div class="item-left">
-              <p class="item-title">Wizard’s Lamb Fuel Bowl</p>
-              <p class="item-desc">Herb-sorcery lamb slices, sautéed exotic veggies, flame-kissed premium bowl.</p>
-            </div>
-            <div class="item-price">₹399</div>
-          </article>
-
-          <article class="menu-item" data-keywords="ocean sorcery prawn bowl prawn bowl prawns">
-            <div class="item-left">
-              <p class="item-title">Ocean Sorcery Prawn Bowl</p>
-              <p class="item-desc">Grilled prawns infused with elemental garlic-magic + exotic vegetable toss.</p>
-            </div>
-            <div class="item-price">₹299</div>
-          </article>
-
-          <article class="menu-item" data-keywords="fire forged tuna steak bowl tuna steak bowl tuna">
-            <div class="item-left">
-              <p class="item-title">Fire-Forged Tuna Steak Bowl</p>
-              <p class="item-desc">Pan-seared tuna forged in wizard’s flame, served with clean greens & quinoa spell.</p>
-            </div>
-            <div class="item-price">₹299</div>
-          </article>
-
-          <article class="menu-item" data-keywords="mystic duck lean bowl duck bowl duck">
-            <div class="item-left">
-              <p class="item-title">Mystic Duck Lean Bowl</p>
-              <p class="item-desc">Crisp-skinned duck breast glazed with magic herbs, balanced with veg & your chosen base.</p>
-            </div>
-            <div class="item-price">₹379</div>
-          </article>
-        </div>
-
-        <!-- BYOB -->
-        <div class="menu-section" id="byob">
-          <h2>🌀 CRAFT-YOUR-MAGIC BOWL</h2>
-          <p class="item-desc" style="margin-bottom:10px">Choose Base • Choose Protein • Magic Veg Mix • Witchcraft Sauces</p>
-          <div class="menu-item">
-            <div class="item-left">
-              <p class="item-title">Base Spells</p>
-              <p class="item-desc">Quinoa • Brown Rice • Millet • Exotic Veg • Zero-Carb Greens</p>
-            </div>
-            <div class="item-price">₹299–₹379</div>
+        <!-- item template -->
+        <div tabindex="0" role="button" class="item dish" data-name="Enchanted Chicken Power Bowl" data-price="₹369" data-desc="Slow-cooked chicken charm, exotic veg, choice of base & handcrafted sauce." data-ingredients="Slow-cooked chicken, quinoa, broccoli, chimichurri">
+          <div class="plate" aria-hidden="true" title="plate">
+            <!-- subtle svg stylised plate (no external images) -->
+            <svg width="84" height="84" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="44" fill="rgba(255,255,255,0.02)"/>
+              <circle cx="50" cy="50" r="32" stroke="rgba(255,255,255,0.03)" stroke-width="2"/>
+              <g opacity="0.9"><path d="M30 62c6-8 18-20 40-22" stroke="rgba(230,178,74,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            </svg>
           </div>
-        </div>
-
-        <!-- Wraps -->
-        <div class="menu-section" id="wraps">
-          <h2>🌯 WRAPS OF POWER</h2>
-
-          <article class="menu-item">
-            <div class="item-left"><p class="item-title">Magic Chicken Wrap</p><p class="item-desc">Hand-rolled multigrain wrap with lean chicken & greens.</p></div>
-            <div class="item-price">₹199</div>
-          </article>
-
-          <article class="menu-item">
-            <div class="item-left"><p class="item-title">Prawn Enchanter Wrap</p><p class="item-desc">Juicy prawns, avocado, and crisp greens in a light wrap.</p></div>
-            <div class="item-price">₹229</div>
-          </article>
-
-          <article class="menu-item">
-            <div class="item-left"><p class="item-title">Tuna Clean Wizard Wrap</p><p class="item-desc">Seared tuna, salad, and a light herb dip.</p></div>
-            <div class="item-price">₹229</div>
-          </article>
-
-          <article class="menu-item">
-            <div class="item-left"><p class="item-title">Paneer Power Spell Wrap</p><p class="item-desc">Low-fat paneer with grilled veggies & yogurt dressing.</p></div>
-            <div class="item-price">₹179</div>
-          </article>
-
-          <article class="menu-item">
-            <div class="item-left"><p class="item-title">Zen Veg Herbal Wrap</p><p class="item-desc">Seasonal vegetables, herbs & hummus for a light meal.</p></div>
-            <div class="item-price">₹159</div>
-          </article>
-        </div>
-
-        <!-- Quick Bites -->
-        <div class="menu-section" id="quick">
-          <h2>🔮 QUICK SPELL-BITES</h2>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Chicken Sorcery Satay Sticks</p><p class="item-desc">Lean chicken skewers with a peanut satay dip.</p></div><div class="item-price">₹149</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Prawn Ember Skewers</p><p class="item-desc">Lightly charred prawns with lemon-pepper charm.</p></div><div class="item-price">₹169</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Tuna Sparks</p><p class="item-desc">Seared tuna cubes perfect for sharing or snacking.</p></div><div class="item-price">₹179</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Egg White Wizard Wrap</p><p class="item-desc">Protein-rich egg-wrap with greens & light dressing.</p></div><div class="item-price">₹139</div></article>
-        </div>
-
-        <!-- Smoothies -->
-        <div class="menu-section" id="smoothies">
-          <h2>🧋 SMOOTHIES OF STRENGTH</h2>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Muscle Mage Chocolate</p><p class="item-desc">Whey protein, banana, almond milk — recovery potion.</p></div><div class="item-price">₹229</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Coffee Wizard Shake</p><p class="item-desc">Cold brew, whey, and a hit of caffeine magic.</p></div><div class="item-price">₹219</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Peanut Power Spell</p><p class="item-desc">Peanut butter, banana, oats, protein — high energy.</p></div><div class="item-price">₹199</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Blueberry Sorcery</p><p class="item-desc">Antioxidant-rich protein smoothie for recovery.</p></div><div class="item-price">₹229</div></article>
-
-          <div style="height:8px"></div>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Green Detox Potion</p><p class="item-desc">Spinach, apple, coconut water — light & refreshing.</p></div><div class="item-price">₹179</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Berry Cleanse Charm</p><p class="item-desc">Mixed berries, chia, almond milk — clean energy.</p></div><div class="item-price">₹189</div></article>
-        </div>
-
-        <!-- Beverages -->
-        <div class="menu-section" id="drinks">
-          <h2>☕ MAGIC BREWS & ELIXIRS</h2>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Wizard’s Americano</p><p class="item-desc">Classic. Strong. Clean.</p></div><div class="item-price">₹99</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Enchanted Cappuccino</p><p class="item-desc">Velvety foam, balanced roast.</p></div><div class="item-price">₹119</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Magic Latte</p><p class="item-desc">Silky latte with health-forward milk options.</p></div><div class="item-price">₹129</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Cold Brew Potion</p><p class="item-desc">Slow-brewed for smooth energy.</p></div><div class="item-price">₹149</div></article>
-          <article class="menu-item"><div class="item-left"><p class="item-title">Matcha Mystic Latte</p><p class="item-desc">Ceremonial matcha, steamed with almond milk.</p></div><div class="item-price">₹179</div></article>
-        </div>
-
-        <!-- Add-ons -->
-        <div class="menu-section" id="addons">
-          <h2>✨ ADD-ON BOOSTS</h2>
-          <div class="menu-item"><div class="item-left"><p class="item-title">Extra Chicken (50g)</p></div><div class="item-price">₹49</div></div>
-          <div class="menu-item"><div class="item-left"><p class="item-title">Extra Prawns (50g)</p></div><div class="item-price">₹59</div></div>
-          <div class="menu-item"><div class="item-left"><p class="item-title">Extra Lamb (50g)</p></div><div class="item-price">₹69</div></div>
-          <div class="menu-item"><div class="item-left"><p class="item-title">Extra Duck (50g)</p></div><div class="item-price">₹59</div></div>
-          <div class="menu-item"><div class="item-left"><p class="item-title">Extra Base</p></div><div class="item-price">₹39</div></div>
-        </div>
-
-        <footer>
-          <p><span class="badge">Note</span> Prices are launch prices — subject to change after opening promotion period. Ask our staff for combos & meal-prep plans.</p>
-        </footer>
-      </section>
-
-      <!-- RIGHT: Combos + Promos -->
-      <aside class="side" aria-label="Combos and promos">
-        <div class="card promo" role="note" aria-live="polite">
-          <div>
-            <h3>Launch Specials</h3>
-            <p>Magic-themed combos & weekday office offers — grab a potion & power your day.</p>
+          <div class="meta">
+            <div class="name">Enchanted Chicken Power Bowl <span class="tag">Bestseller</span></div>
+            <div class="desc">Slow-cooked chicken charm, exotic veg, choice of base & handcrafted sauce.</div>
           </div>
+          <div class="price">₹369</div>
         </div>
 
-        <div class="card combo-list">
-          <h3 style="margin:0 0 8px 0; color:var(--accent); font-family:Playfair Display, serif">🟫 COMBO SPELLS — LAUNCH</h3>
-
-          <div class="combo">
-            <div class="left">
-              <div class="title">Wizard’s Power Feast (Bowl + Smoothie)</div>
-              <div class="item-desc" style="color:var(--muted);font-size:13px">Chicken / Prawn / Tuna options</div>
-            </div>
-            <div class="price">₹499–₹559</div>
+        <div tabindex="0" role="button" class="item dish reveal" data-name="Wizard’s Lamb Fuel Bowl" data-price="₹399" data-desc="Herb-sorcery lamb slices, sautéed exotic veggies, flame-kissed premium bowl." data-ingredients="Slow-cooked lamb, millet, roasted carrot, lemon pepper">
+          <div class="plate" aria-hidden="true">
+            <svg width="84" height="84" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" fill="rgba(255,255,255,0.02)"/><path d="M36 66c6-10 20-26 40-24" stroke="rgba(109,224,200,0.8)" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
-
-          <div class="combo">
-            <div class="left"><div class="title">Sorcerer’s Workday Boost (Bowl + Coffee)</div><div class="item-desc" style="color:var(--muted);font-size:13px">Quick office-friendly combo</div></div>
-            <div class="price">₹429–₹499</div>
-          </div>
-
-          <div class="combo">
-            <div class="left"><div class="title">Mystic Wrap & Potion (Wrap + Smoothie)</div><div class="item-desc" style="color:var(--muted);font-size:13px">Light & fast</div></div>
-            <div class="price">₹299–₹389</div>
-          </div>
-
-          <div class="combo">
-            <div class="left"><div class="title">Office Wizard Lunch Box</div><div class="item-desc" style="color:var(--muted);font-size:13px">Mini bowl + tea + side</div></div>
-            <div class="price">₹259–₹299</div>
-          </div>
-
-          <div class="combo">
-            <div class="left"><div class="title">Beast Mode Protein Pack (Large + Protein Smoothie)</div><div class="item-desc" style="color:var(--muted);font-size:13px">Gym power pack</div></div>
-            <div class="price">₹529–₹599</div>
-          </div>
-
-          <div class="combo">
-            <div class="left"><div class="title">Grand Magician Weekend Feast</div><div class="item-desc" style="color:var(--muted);font-size:13px">Bowl + Smoothie + Coffee + Quick Bite</div></div>
-            <div class="price">₹699–₹749</div>
-          </div>
+          <div class="meta"><div class="name">Wizard’s Lamb Fuel Bowl</div><div class="desc">Herb-sorcery lamb slices, sautéed exotic veggies, flame-kissed premium bowl.</div></div>
+          <div class="price">₹399</div>
         </div>
 
-        <div class="card">
-          <h3 style="margin:0 0 8px 0; color:var(--accent); font-family:Playfair Display, serif">Opening Tip</h3>
-          <p style="margin:0;color:var(--muted)">Feature "Wizard's Power Feast" on your front poster & social — it drives high conversion. Consider a weekday lunch discount for first month.</p>
+        <div tabindex="0" role="button" class="item dish reveal" data-name="Ocean Sorcery Prawn Bowl" data-price="₹299" data-desc="Grilled prawns infused with elemental garlic-magic + exotic vegetable toss." data-ingredients="Prawns, brown rice, zucchini, garlic butter">
+          <div class="plate" aria-hidden="true">
+            <svg width="84" height="84" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" fill="rgba(255,255,255,0.02)"/><path d="M38 60c8-12 22-28 36-22" stroke="rgba(230,178,74,0.8)" stroke-width="2"/></svg>
+          </div>
+          <div class="meta"><div class="name">Ocean Sorcery Prawn Bowl</div><div class="desc">Grilled prawns infused with elemental garlic-magic + exotic vegetable toss.</div></div>
+          <div class="price">₹299</div>
         </div>
-      </aside>
-    </main>
 
+        <div tabindex="0" role="button" class="item dish reveal" data-name="Fire-Forged Tuna Steak Bowl" data-price="₹299" data-desc="Pan-seared tuna forged in wizard’s flame, served with clean greens & quinoa spell." data-ingredients="Tuna steak, quinoa, greens, lemon pepper">
+          <div class="plate" aria-hidden="true">
+            <svg width="84" height="84" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" fill="rgba(255,255,255,0.02)"/><path d="M34 64c10-14 26-32 44-26" stroke="rgba(109,224,200,0.8)" stroke-width="2"/></svg>
+          </div>
+          <div class="meta"><div class="name">Fire-Forged Tuna Steak Bowl</div><div class="desc">Pan-seared tuna forged in wizard’s flame, served with clean greens & quinoa spell.</div></div>
+          <div class="price">₹299</div>
+        </div>
+
+        <div tabindex="0" role="button" class="item dish reveal" data-name="Mystic Duck Lean Bowl" data-price="₹379" data-desc="Crisp-skinned duck breast glazed with magic herbs, balanced with veg & your chosen base." data-ingredients="Duck breast, brown rice, mushrooms, chimichurri">
+          <div class="plate" aria-hidden="true">
+            <svg width="84" height="84" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" fill="rgba(255,255,255,0.02)"/><path d="M32 62c8-12 24-28 42-20" stroke="rgba(230,178,74,0.8)" stroke-width="2"/></svg>
+          </div>
+          <div class="meta"><div class="name">Mystic Duck Lean Bowl</div><div class="desc">Crisp-skinned duck breast glazed with magic herbs, balanced with veg & your chosen base.</div></div>
+          <div class="price">₹379</div>
+        </div>
+      </div>
+
+      <!-- BYOB smaller summarized -->
+      <div class="section reveal">
+        <h2>🌀 CRAFT-YOUR-MAGIC BOWL</h2>
+        <div class="item" role="group" aria-label="Craft-your-bowl">
+          <div class="meta">
+            <div class="name">Base Spells • Protein Charms • Magic Veg Mix • Witchcraft Sauces</div>
+            <div class="desc">Quinoa • Brown Rice • Millet • Exotic Veg • Zero-Carb Greens • Sauces: Chimichurri, Peanut Satay, Lemon Pepper, Greek Mint</div>
+          </div>
+          <div class="price">₹299–₹379</div>
+        </div>
+      </div>
+
+      <!-- Quick bites condensed -->
+      <div class="section reveal">
+        <h2>🔮 QUICK SPELL-BITES</h2>
+        <div class="item dish" tabindex="0" role="button" data-name="Chicken Sorcery Satay Sticks" data-price="₹149" data-desc="Lean chicken skewers with peanut satay dip." data-ingredients="Chicken, peanut satay"><div class="meta"><div class="name">Chicken Sorcery Satay Sticks</div><div class="desc">Lean chicken skewers with peanut satay dip.</div></div><div class="price">₹149</div></div>
+        <div class="item dish" tabindex="0" role="button" data-name="Prawn Ember Skewers" data-price="₹169" data-desc="Lightly charred prawns with lemon-pepper charm." data-ingredients="Prawns, lemon pepper"><div class="meta"><div class="name">Prawn Ember Skewers</div><div class="desc">Lightly charred prawns with lemon-pepper charm.</div></div><div class="price">₹169</div></div>
+        <div class="item dish" tabindex="0" role="button" data-name="Tuna Sparks" data-price="₹179" data-desc="Seared tuna cubes perfect for sharing or snacking." data-ingredients="Tuna cubes, sesame"><div class="meta"><div class="name">Tuna Sparks</div><div class="desc">Seared tuna cubes perfect for sharing or snacking.</div></div><div class="price">₹179</div></div>
+      </div>
+
+      <!-- Smoothies condensed -->
+      <div class="section reveal">
+        <h2>🧋 SMOOTHIES OF STRENGTH</h2>
+        <div class="item dish" tabindex="0" role="button" data-name="Muscle Mage Chocolate" data-price="₹229" data-desc="Whey protein, banana, almond milk — recovery potion." data-ingredients="Whey, banana, almond milk"><div class="meta"><div class="name">Muscle Mage Chocolate</div><div class="desc">Whey protein, banana, almond milk — recovery potion.</div></div><div class="price">₹229</div></div>
+        <div class="item dish" tabindex="0" role="button" data-name="Green Detox Potion" data-price="₹179" data-desc="Spinach, apple, coconut water — light & refreshing." data-ingredients="Spinach, apple, coconut water"><div class="meta"><div class="name">Green Detox Potion</div><div class="desc">Spinach, apple, coconut water — light & refreshing.</div></div><div class="price">₹179</div></div>
+      </div>
+
+      <footer class="section note reveal"><div class="desc"><strong>Note:</strong> Prices are launch offers. Ask staff for weekday combos & meal-prep plans.</div></footer>
+    </section>
+
+    <!-- RIGHT: combos -->
+    <aside class="side" aria-label="Combos">
+      <div class="panel reveal">
+        <h3>🟫 COMBO SPELLS — LAUNCH</h3>
+        <div class="combo"><div class="title">Wizard’s Power Feast</div><div class="price">₹499–₹559</div></div>
+        <div class="combo"><div class="title">Sorcerer’s Workday Boost</div><div class="price">₹429–₹499</div></div>
+        <div class="combo"><div class="title">Mystic Wrap & Potion</div><div class="price">₹299–₹389</div></div>
+        <div class="combo"><div class="title">Office Wizard Lunch Box</div><div class="price">₹259–₹299</div></div>
+        <div class="combo"><div class="title">Beast Mode Protein Pack</div><div class="price">₹529–₹599</div></div>
+        <div style="height:8px"></div>
+        <a href="#" class="btn-primary" style="display:inline-block; text-decoration:none">View Combos</a>
+      </div>
+
+      <div class="panel reveal">
+        <h3>Opening Tip</h3>
+        <div class="desc">Feature "Wizard's Power Feast" on your front poster & socials. Offer weekday lunch discounts for the first month to build loyalty.</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Cinematic modal -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card" role="document">
+      <div class="modal-plate" aria-hidden="true">
+        <div class="plate-glow"></div>
+        <div class="flame"></div>
+        <!-- dynamic svg plate "hero" inserted by JS -->
+        <div id="plateSVG" style="z-index:2"></div>
+      </div>
+      <div class="modal-content">
+        <h2 id="modalTitle">Dish Title</h2>
+        <p id="modalDesc">Full dramatic description of the dish and its magic — technique and taste highlights.</p>
+        <div class="ingredients" id="modalIngr"></div>
+        <div class="cta-row">
+          <button class="btn-primary" id="modalOrder">Add to Order • ₹0</button>
+          <button class="btn-ghost" id="modalClose">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    // theme toggle
+    // Theme toggle
     (function(){
       const btn = document.getElementById('themeToggle');
-      function applyTheme(isLight){
-        document.body.classList.toggle('light', !!isLight);
-        btn.setAttribute('aria-pressed', !!isLight);
-      }
-      // try to read saved preference
+      const body = document.body;
       const saved = localStorage.getItem('gm-theme');
-      if(saved !== null) applyTheme(saved === 'light');
-      // initial (keep dark by default for premium)
-      // add listener
+      if(saved === 'light') body.classList.add('light');
       btn.addEventListener('click', () => {
-        const isLight = !document.body.classList.contains('light');
-        applyTheme(isLight);
+        const isLight = body.classList.toggle('light');
         localStorage.setItem('gm-theme', isLight ? 'light' : 'dark');
+        btn.setAttribute('aria-pressed', !!isLight);
       });
     })();
 
-    // simple search filter
+    // Search filter
     (function(){
-      const input = document.getElementById('search');
-      const items = Array.from(document.querySelectorAll('.menu-item'));
+      const input = document.getElementById('searchInput');
+      const items = Array.from(document.querySelectorAll('.dish'));
       input.addEventListener('input', function(){
         const q = this.value.trim().toLowerCase();
-        if(!q){
-          items.forEach(i=>i.style.display='flex');
-          return;
-        }
-        items.forEach(i=>{
-          const keywords = (i.dataset.keywords || i.querySelector('.item-title')?.textContent || '').toLowerCase();
-          const desc = (i.querySelector('.item-desc')?.textContent || '').toLowerCase();
-          if(keywords.includes(q) || desc.includes(q) || i.querySelector('.item-title').textContent.toLowerCase().includes(q)){
-            i.style.display='flex';
-          } else i.style.display='none';
+        items.forEach(it=>{
+          const name = it.dataset.name.toLowerCase();
+          const desc = it.dataset.desc.toLowerCase();
+          const ingr = (it.dataset.ingredients || '').toLowerCase();
+          it.style.display = (!q || name.includes(q) || desc.includes(q) || ingr.includes(q)) ? '' : 'none';
         });
       });
     })();
 
-    // tiny accessibility: focus outlines on keyboard users
+    // Intersection observer for reveal animations
+    (function(){
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add('inview');
+        });
+      }, {threshold: .12});
+      document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    })();
+
+    // Dish modal cinematic behaviour
+    (function(){
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modalTitle');
+      const desc = document.getElementById('modalDesc');
+      const ingrWrap = document.getElementById('modalIngr');
+      const plate = document.getElementById('plateSVG');
+      const orderBtn = document.getElementById('modalOrder');
+      const closeBtn = document.getElementById('modalClose');
+
+      // create a dynamic plate SVG with animated steam particles
+      function createPlateSVG(name){
+        // simple decorative svg with animated tiny circles
+        const svg = `<svg viewBox="0 0 300 300" width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="g1"><stop offset="0%" stop-color="#e6b24a" stop-opacity="0.9"/><stop offset="70%" stop-color="#e6b24a" stop-opacity="0.15"/></radialGradient>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity="0.5"/></filter>
+          </defs>
+          <g filter="url(#shadow)">
+            <ellipse cx="150" cy="170" rx="120" ry="40" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="150" cy="110" r="70" fill="url(#g1)"/>
+            <text x="150" y="115" text-anchor="middle" font-size="18" font-family="Playfair Display, serif" fill="#081018" font-weight="700">${name}</text>
+          </g>
+          <!-- steam particles -->
+          <g id="steam" fill="#fff" opacity="0.18">
+            <circle cx="120" cy="50" r="3"><animate attributeName="cy" dur="2s" repeatCount="indefinite" values="50;20;0; -20"/></circle>
+            <circle cx="150" cy="60" r="2"><animate attributeName="cy" dur="2.8s" repeatCount="indefinite" values="60;30;10;-10"/></circle>
+            <circle cx="180" cy="48" r="2.5"><animate attributeName="cy" dur="3.2s" repeatCount="indefinite" values="48;22;2;-18"/></circle>
+          </g>
+        </svg>`;
+        return svg;
+      }
+
+      function openModal(data){
+        title.textContent = data.name;
+        desc.textContent = data.desc;
+        ingrWrap.innerHTML = '';
+        (data.ingredients || '').split(',').forEach(i=>{
+          if(!i.trim()) return;
+          const chip = document.createElement('div'); chip.className = 'chip'; chip.textContent = i.trim();
+          ingrWrap.appendChild(chip);
+        });
+        plate.innerHTML = createPlateSVG(data.name);
+        orderBtn.textContent = `Add to Order • ${data.price}`;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        // small entrance animation
+        requestAnimationFrame(()=> document.querySelector('.modal-card').classList.add('inview'));
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.querySelector('.modal-card').classList.remove('inview');
+      }
+
+      // attach click to dishes
+      document.querySelectorAll('.dish').forEach(el=>{
+        el.addEventListener('click', ()=> openModal({
+          name: el.dataset.name,
+          price: el.dataset.price,
+          desc: el.dataset.desc,
+          ingredients: el.dataset.ingredients
+        }));
+        // keyboard accessible
+        el.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key===' ') { e.preventDefault(); el.click(); } });
+      });
+
+      // close interactions
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
+
+      // order button (here just demonstrates)
+      orderBtn.addEventListener('click', ()=>{
+        alert('Added to order: ' + title.textContent + ' — ' + orderBtn.textContent.split('•')[1].trim());
+        closeModal();
+      });
+    })();
+
+    // small parallax for watermark on mouse move
+    (function(){
+      const wm = document.querySelector('.watermark::before'); // not directly accessible; use body mousemove to transform
+      const overlay = document.querySelector('.watermark');
+      window.addEventListener('mousemove', (e)=>{
+        const x = (e.clientX / window.innerWidth - 0.5) * 8;
+        const y = (e.clientY / window.innerHeight - 0.5) * 6;
+        // move the watermark subtly
+        document.querySelector('.watermark').style.transform = `translate(${x}px, ${y}px)`;
+      });
+    })();
+
+    // smooth pref focus outline for keyboard users
     (function(){
       function handleFirstTab(e){
         if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
       }
       window.addEventListener('keydown', handleFirstTab, {once:true});
     })();
+
   </script>
 </body>
 </html>
