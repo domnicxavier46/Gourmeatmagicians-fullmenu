@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>GOURMEAT MAGICIAN'S — Menu (Minimal • Animated)</title>
-<meta name="description" content="GOURMEAT MAGICIAN'S — Minimal, fast menu with subtle cinematic opening. No dish images." />
+<title>GOURMEAT MAGICIAN'S — Menu (Full)</title>
+<meta name="description" content="GOURMEAT MAGICIAN'S — Magic-themed healthy bowls, smoothies, wraps, combos & more." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -18,12 +18,10 @@
     --panel-light:#ffffff;
     --muted-light:#596270;
 
-    /* Price pill contrast: dark theme -> light pill with dark text; light theme -> dark pill with white text */
-    --price-bg-dark: rgba(255,255,255,0.95);   /* almost white pill on dark bg */
-    --price-fg-dark: #081018;                  /* dark text on light pill */
-
-    --price-bg-light: rgba(8,16,24,0.95);      /* almost black pill on light bg */
-    --price-fg-light: #ffffff;                 /* white text on dark pill */
+    --price-bg-dark: rgba(255,255,255,0.95);
+    --price-fg-dark: #081018;
+    --price-bg-light: rgba(8,16,24,0.95);
+    --price-fg-light: #ffffff;
 
     --radius:12px;
     --maxw:980px;
@@ -31,12 +29,9 @@
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue";
   }
 
-  /* base */
   html,body{height:100%; margin:0}
   body{
-    background:
-      radial-gradient(700px 300px at 8% 8%, rgba(230,178,74,0.02), transparent),
-      var(--bg-dark);
+    background: radial-gradient(700px 300px at 8% 8%, rgba(230,178,74,0.02), transparent), var(--bg-dark);
     color: #e9eef3;
     padding:20px;
     display:flex;
@@ -45,59 +40,33 @@
     -moz-osx-font-smoothing:grayscale;
     overflow-y:auto;
   }
-  body.light{
-    background: var(--bg-light);
-    color:#081018;
-  }
+  body.light{ background: var(--bg-light); color:#081018; }
 
-  /* watermark (animated on load) */
-  .watermark {
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-    display:block;
-    opacity:0;
-    transform: scale(0.98) rotate(-1.2deg);
+  /* watermark */
+  .watermark{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    opacity:0; transform: scale(.98) rotate(-1deg);
     transition: opacity 700ms ease, transform 900ms cubic-bezier(.2,.9,.2,1);
     background-image: var(--logo-url);
-    background-repeat:no-repeat;
-    background-position: center 34%;
-    background-size: 62vmin;
-    mix-blend-mode: overlay;
-    filter: blur(.6px) saturate(.7);
+    background-repeat:no-repeat; background-position:center 34%;
+    background-size:62vmin; mix-blend-mode: overlay; filter: blur(.6px) saturate(.7);
   }
-  .watermark.visible{ opacity:0.045; transform: scale(1) rotate(0deg); }
+  .watermark.visible{ opacity:0.045; transform:scale(1) rotate(0deg); }
 
-  /* page container */
-  .page{
-    width:100%;
-    max-width:var(--maxw);
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    z-index:2;
-  }
+  .page{ width:100%; max-width:var(--maxw); display:flex; flex-direction:column; gap:14px; z-index:2; }
 
   header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px;
-    border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px; border-radius:var(--radius);
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.03);
-    backdrop-filter: blur(4px);
-    transform-origin:center;
-    opacity:0;
-    transform: translateY(8px) scale(.995);
+    border:1px solid rgba(255,255,255,0.03); backdrop-filter: blur(4px);
+    opacity:0; transform: translateY(8px) scale(.995);
   }
-  header.visible{ opacity:1; transform: translateY(0) scale(1); transition: opacity 600ms ease, transform 600ms cubic-bezier(.2,.9,.2,1); }
+  header.visible{ opacity:1; transform:none; transition: opacity 600ms ease, transform 600ms cubic-bezier(.2,.9,.2,1); }
 
   .brand{ display:flex; gap:12px; align-items:center; }
-  .logo{ width:56px; height:56px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:transparent }
-  .logo img{ width:100%; height:100%; object-fit:contain; opacity:.95 }
+  .logo{ width:56px; height:56px; border-radius:10px; display:grid; place-items:center; overflow:hidden; }
+  .logo img{ width:100%; height:100%; object-fit:contain; opacity:.95; }
 
   .title h1{ margin:0; font-family:"Playfair Display", serif; font-size:18px; color:var(--accent); }
   .title p{ margin:0; font-size:12px; color:var(--muted-dark); }
@@ -105,36 +74,22 @@
 
   .controls{ display:flex; gap:8px; align-items:center; }
   .search{
-    background: rgba(255,255,255,0.02);
-    border-radius:10px;
-    padding:7px 10px;
-    display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.02); border-radius:10px; padding:7px 10px; display:flex; gap:8px; align-items:center;
+    border:1px solid rgba(255,255,255,0.03);
   }
   .search input{ background:transparent; border:0; outline:0; color:inherit; width:160px; font-size:14px; }
 
-  .theme-btn{
-    background:transparent;
-    border:1px solid rgba(255,255,255,0.04);
-    color:var(--muted-dark);
-    padding:8px 10px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:700;
-    font-size:13px;
-  }
+  .theme-btn{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted-dark); padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700; font-size:13px; }
   body.light .theme-btn{ color:var(--muted-light); border-color:rgba(0,0,0,0.06); }
 
-  /* menu */
   .menu{ display:flex; flex-direction:column; gap:12px; margin-top:2px; }
-  .section-title{ font-family:"Playfair Display", serif; font-size:16px; color:var(--accent); margin:6px 2px; }
   .section{ display:flex; flex-direction:column; gap:10px; }
+  .section-title{ font-family:"Playfair Display", serif; font-size:16px; color:var(--accent); margin:6px 2px; }
 
   .item{
     display:flex; align-items:center; justify-content:space-between; gap:12px;
-    padding:12px; border-radius:10px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-    border:1px solid rgba(255,255,255,0.02);
-    min-height:56px;
+    padding:12px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    border:1px solid rgba(255,255,255,0.02); min-height:56px;
     opacity:0; transform: translateY(8px);
   }
   body.light .item{ background: var(--panel-light); border:1px solid rgba(0,0,0,0.05); }
@@ -144,125 +99,127 @@
   .desc{ margin:0; color:var(--muted-dark); font-size:13px; }
   body.light .desc{ color:var(--muted-light); }
 
-  /* PRICE PILL - adaptive and high-contrast */
   .price{
     font-weight:800; padding:8px 12px; border-radius:999px; min-width:72px; text-align:center;
-    box-shadow: 0 8px 20px rgba(2,6,23,0.45);
-    border:1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 8px 20px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.06);
   }
-  /* dark theme: light pill with dark text */
-  body:not(.light) .price{
-    background: var(--price-bg-dark);
-    color: var(--price-fg-dark);
-    border-color: rgba(255,255,255,0.06);
-  }
-  /* light theme: dark pill with white text */
-  body.light .price{
-    background: var(--price-bg-light);
-    color: var(--price-fg-light);
-    border-color: rgba(0,0,0,0.06);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  }
+  /* adaptive price color */
+  body:not(.light) .price{ background: var(--price-bg-dark); color: var(--price-fg-dark); border-color: rgba(255,255,255,0.06); }
+  body.light .price{ background: var(--price-bg-light); color: var(--price-fg-light); border-color: rgba(0,0,0,0.06); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
 
-  /* subtle hover/tap */
-  .item:active{ transform: translateY(1px); }
   .tag{ font-size:11px; color:var(--accent); font-weight:800; margin-left:6px; }
+  .small-desc{ font-size:13px; color:var(--muted-dark); }
 
-  /* stagger animation (kept tiny & performant) */
-  @keyframes fadeUp { to { opacity:1; transform: none; } }
-  .item.animate{ animation: fadeUp .44s ease forwards; }
+  /* combos panel minimal */
+  .combo-panel{ padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); }
+  body.light .combo-panel{ background:var(--panel-light); border-color:rgba(0,0,0,0.06); }
 
-  /* footer */
+  .combo-row{ display:flex; justify-content:space-between; gap:12px; padding:8px 6px; align-items:center; border-radius:8px; }
+  .combo-row .title{ font-weight:800 }
+  .combo-row .price{ font-weight:900; color:var(--accent-2); background:transparent; box-shadow:none; border:none; padding:0; min-width:fit-content; }
+
   footer{ margin-top:8px; color:var(--muted-dark); font-size:13px; }
 
-  /* responsive */
-  @media (min-width:720px){
-    body{ padding:28px; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .watermark, header { transition: none !important; transform:none !important; opacity:1 !important; }
-    .item { animation:none !important; opacity:1 !important; transform:none !important; }
-  }
+  @keyframes fadeUp{ to{ opacity:1; transform:none } }
+  .item.animate{ animation: fadeUp .44s ease forwards; }
+
+  @media (min-width:720px){ body{ padding:28px; } }
+  @media (prefers-reduced-motion: reduce){ .watermark, header { transition:none!important; transform:none!important; opacity:1!important } .item{ animation:none!important; opacity:1!important; transform:none!important } }
 </style>
 </head>
 <body>
-  <!-- watermark uses a simple background image to keep things fast -->
   <div id="wm" class="watermark" aria-hidden="true"></div>
 
-  <div class="page" role="main" aria-label="Gourmeat Magician's menu">
+  <div class="page" role="main" aria-label="Gourmeat Magician's full menu">
     <header id="hero" aria-hidden="false">
       <div class="brand">
         <div class="logo"><img src="logo.png" alt="Gourmeat Magician's logo" /></div>
         <div class="title">
           <h1>GOURMEAT MAGICIAN'S</h1>
-          <p>Your Taste, Our Magic — Dommasandra (ITPL)</p>
+          <p>Your Taste, Our Magic</p>
         </div>
       </div>
 
       <div class="controls" role="search">
         <div class="search" aria-hidden="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6.2" stroke="currentColor" stroke-width="1.4"></circle></svg>
-          <input id="q" type="search" placeholder="Search bowls, smoothies, wraps..." aria-label="Search menu" />
+          <input id="q" type="search" placeholder="Search bowls, smoothies, wraps, combos..." aria-label="Search menu" />
         </div>
         <button id="themeBtn" class="theme-btn" aria-pressed="false" title="Toggle theme">Theme</button>
       </div>
     </header>
 
     <main class="menu" id="menu" aria-live="polite">
-      <!-- SIGNATURE sorted low -> high -->
+
+      <!-- SIGNATURE BOWLS (sorted low->high) -->
       <div class="section" aria-labelledby="sig-title">
         <div id="sig-title" class="section-title">✨ SIGNATURE SPELL-BOWLS</div>
 
         <div class="item" data-name="Ocean Sorcery Prawn Bowl" data-price="₹299">
-          <div class="left">
-            <div class="name">Ocean Sorcery Prawn Bowl</div>
-            <div class="desc">Grilled prawns with garlic-magic & exotic veg.</div>
-          </div>
+          <div class="left"><div class="name">Ocean Sorcery Prawn Bowl</div><div class="desc">Grilled prawns with garlic-magic & exotic veg.</div></div>
           <div class="price">₹299</div>
         </div>
 
         <div class="item" data-name="Fire-Forged Tuna Steak Bowl" data-price="₹299">
-          <div class="left">
-            <div class="name">Fire-Forged Tuna Steak Bowl</div>
-            <div class="desc">Pan-seared tuna, clean greens & quinoa.</div>
-          </div>
+          <div class="left"><div class="name">Fire-Forged Tuna Steak Bowl</div><div class="desc">Pan-seared tuna, clean greens & quinoa.</div></div>
           <div class="price">₹299</div>
         </div>
 
         <div class="item" data-name="Enchanted Chicken Power Bowl" data-price="₹369">
-          <div class="left">
-            <div class="name">Enchanted Chicken Power Bowl <span class="tag">Bestseller</span></div>
-            <div class="desc">Slow-cooked chicken, exotic veg & handcrafted sauce.</div>
-          </div>
+          <div class="left"><div class="name">Enchanted Chicken Power Bowl <span class="tag">Bestseller</span></div><div class="desc">Slow-cooked chicken, exotic veg & handcrafted sauce.</div></div>
           <div class="price">₹369</div>
         </div>
 
         <div class="item" data-name="Mystic Duck Lean Bowl" data-price="₹379">
-          <div class="left">
-            <div class="name">Mystic Duck Lean Bowl</div>
-            <div class="desc">Crisp-skinned duck breast, mushrooms & chimichurri.</div>
-          </div>
+          <div class="left"><div class="name">Mystic Duck Lean Bowl</div><div class="desc">Crisp-skinned duck breast, mushrooms & chimichurri.</div></div>
           <div class="price">₹379</div>
         </div>
 
         <div class="item" data-name="Wizard’s Lamb Fuel Bowl" data-price="₹399">
-          <div class="left">
-            <div class="name">Wizard’s Lamb Fuel Bowl</div>
-            <div class="desc">Herb-sorcery lamb slices, millet & roasted veg.</div>
-          </div>
+          <div class="left"><div class="name">Wizard’s Lamb Fuel Bowl</div><div class="desc">Herb-sorcery lamb slices, millet & roasted veg.</div></div>
           <div class="price">₹399</div>
         </div>
       </div>
 
-      <!-- CRAFT-YOUR-MAGIC -->
+      <!-- CRAFT-YOUR-MAGIC BOWL -->
       <div class="section" aria-labelledby="byob">
         <div id="byob" class="section-title">🌀 CRAFT-YOUR-MAGIC BOWL</div>
         <div class="item">
           <div class="left">
             <div class="name">Base Spells • Protein Charms • Magic Veg Mix</div>
-            <div class="desc">Quinoa • Brown Rice • Millet • Exotic Veg • Zero-Carb Greens — Sauces: Chimichurri, Satay, Lemon Pepper</div>
+            <div class="desc">Base: Quinoa, Brown Rice, Millet, Exotic Veg, Zero-Carb Greens. Sauces: Chimichurri, Peanut Satay, Lemon Pepper, Greek Mint.</div>
           </div>
           <div class="price">₹299–₹379</div>
+        </div>
+      </div>
+
+      <!-- WRAPS -->
+      <div class="section" aria-labelledby="wraps">
+        <div id="wraps" class="section-title">🌯 WRAPS OF POWER</div>
+
+        <div class="item" data-name="Magic Chicken Wrap" data-price="₹199">
+          <div class="left"><div class="name">Magic Chicken Wrap</div><div class="desc">Hand-rolled multigrain wrap with lean chicken & greens.</div></div>
+          <div class="price">₹199</div>
+        </div>
+
+        <div class="item" data-name="Prawn Enchanter Wrap" data-price="₹229">
+          <div class="left"><div class="name">Prawn Enchanter Wrap</div><div class="desc">Juicy prawns, avocado & crisp greens.</div></div>
+          <div class="price">₹229</div>
+        </div>
+
+        <div class="item" data-name="Tuna Clean Wizard Wrap" data-price="₹229">
+          <div class="left"><div class="name">Tuna Clean Wizard Wrap</div><div class="desc">Seared tuna, salad & light herb dip.</div></div>
+          <div class="price">₹229</div>
+        </div>
+
+        <div class="item" data-name="Paneer Power Spell Wrap" data-price="₹179">
+          <div class="left"><div class="name">Paneer Power Spell Wrap</div><div class="desc">Low-fat paneer with grilled veggies & yogurt dressing.</div></div>
+          <div class="price">₹179</div>
+        </div>
+
+        <div class="item" data-name="Zen Veg Herbal Wrap" data-price="₹159">
+          <div class="left"><div class="name">Zen Veg Herbal Wrap</div><div class="desc">Seasonal vegetables, herbs & hummus for a light meal.</div></div>
+          <div class="price">₹159</div>
         </div>
       </div>
 
@@ -271,26 +228,17 @@
         <div id="quick" class="section-title">🔮 QUICK SPELL-BITES</div>
 
         <div class="item" data-name="Chicken Sorcery Satay Sticks" data-price="₹149">
-          <div class="left">
-            <div class="name">Chicken Sorcery Satay Sticks</div>
-            <div class="desc">Lean chicken skewers with peanut satay dip.</div>
-          </div>
+          <div class="left"><div class="name">Chicken Sorcery Satay Sticks</div><div class="desc">Lean chicken skewers with peanut satay dip.</div></div>
           <div class="price">₹149</div>
         </div>
 
         <div class="item" data-name="Prawn Ember Skewers" data-price="₹169">
-          <div class="left">
-            <div class="name">Prawn Ember Skewers</div>
-            <div class="desc">Lightly charred prawns with lemon-pepper charm.</div>
-          </div>
+          <div class="left"><div class="name">Prawn Ember Skewers</div><div class="desc">Lightly charred prawns with lemon-pepper charm.</div></div>
           <div class="price">₹169</div>
         </div>
 
         <div class="item" data-name="Tuna Sparks" data-price="₹179">
-          <div class="left">
-            <div class="name">Tuna Sparks</div>
-            <div class="desc">Seared tuna cubes perfect for snacking.</div>
-          </div>
+          <div class="left"><div class="name">Tuna Sparks</div><div class="desc">Seared tuna cubes perfect for snacking.</div></div>
           <div class="price">₹179</div>
         </div>
       </div>
@@ -300,28 +248,81 @@
         <div id="smooth" class="section-title">🧋 SMOOTHIES OF STRENGTH</div>
 
         <div class="item" data-name="Green Detox Potion" data-price="₹179">
-          <div class="left">
-            <div class="name">Green Detox Potion</div>
-            <div class="desc">Spinach, apple, coconut water — light & refreshing.</div>
-          </div>
+          <div class="left"><div class="name">Green Detox Potion</div><div class="desc">Spinach, apple, coconut water — light & refreshing.</div></div>
           <div class="price">₹179</div>
         </div>
 
+        <div class="item" data-name="Peanut Power Spell" data-price="₹199">
+          <div class="left"><div class="name">Peanut Power Spell</div><div class="desc">Peanut butter, banana, oats, protein — high energy.</div></div>
+          <div class="price">₹199</div>
+        </div>
+
+        <div class="item" data-name="Coffee Wizard Shake (Protein-free option available)" data-price="₹219">
+          <div class="left"><div class="name">Coffee Wizard Shake</div><div class="desc">Cold brew + whey — caffeine recovery potion. (Opt no-protein)</div></div>
+          <div class="price">₹219</div>
+        </div>
+
         <div class="item" data-name="Muscle Mage Chocolate" data-price="₹229">
-          <div class="left">
-            <div class="name">Muscle Mage Chocolate</div>
-            <div class="desc">Whey protein, banana, almond milk — recovery potion.</div>
-          </div>
+          <div class="left"><div class="name">Muscle Mage Chocolate</div><div class="desc">Whey protein, banana, almond milk — recovery potion.</div></div>
+          <div class="price">₹229</div>
+        </div>
+
+        <div class="item" data-name="Blueberry Sorcery" data-price="₹229">
+          <div class="left"><div class="name">Blueberry Sorcery</div><div class="desc">Antioxidant-rich protein smoothie for recovery.</div></div>
           <div class="price">₹229</div>
         </div>
       </div>
 
-      <footer><small>Note: Launch prices. Ask staff for combos & meal-prep plans.</small></footer>
+      <!-- ADD-ONS -->
+      <div class="section" aria-labelledby="addons">
+        <div id="addons" class="section-title">✨ ADD-ON BOOSTS</div>
+
+        <div class="item" data-name="Extra Chicken (50g)" data-price="₹49">
+          <div class="left"><div class="name">Extra Chicken (50g)</div><div class="desc">Protein boost for bowls & wraps.</div></div>
+          <div class="price">₹49</div>
+        </div>
+
+        <div class="item" data-name="Extra Prawns (50g)" data-price="₹59">
+          <div class="left"><div class="name">Extra Prawns (50g)</div><div class="desc">Add prawns to any base.</div></div>
+          <div class="price">₹59</div>
+        </div>
+
+        <div class="item" data-name="Extra Lamb (50g)" data-price="₹69">
+          <div class="left"><div class="name">Extra Lamb (50g)</div><div class="desc">Premium protein add-on.</div></div>
+          <div class="price">₹69</div>
+        </div>
+
+        <div class="item" data-name="Extra Base" data-price="₹39">
+          <div class="left"><div class="name">Extra Base</div><div class="desc">Extra quinoa or rice base.</div></div>
+          <div class="price">₹39</div>
+        </div>
+
+        <div class="item" data-name="Extra Veg" data-price="₹29">
+          <div class="left"><div class="name">Extra Veg</div><div class="desc">Seasonal vegetable add-on.</div></div>
+          <div class="price">₹29</div>
+        </div>
+      </div>
+
+      <!-- COMBO SPELLS -->
+      <div class="section" aria-labelledby="combos">
+        <div id="combos" class="section-title">🟫 COMBO SPELLS — LAUNCH</div>
+
+        <div class="combo-panel">
+          <div class="combo-row"><div class="title">Wizard’s Power Feast (Bowl + Smoothie)</div><div class="price">₹499–₹559</div></div>
+          <div class="combo-row"><div class="title">Sorcerer’s Workday Boost (Bowl + Hydration Elixir)</div><div class="price">₹429–₹499</div></div>
+          <div class="combo-row"><div class="title">Mystic Wrap & Potion (Wrap + Smoothie)</div><div class="price">₹299–₹389</div></div>
+          <div class="combo-row"><div class="title">Office Wizard Lunch Box (Mini Bowl + Side + Elixir)</div><div class="price">₹259–₹299</div></div>
+          <div class="combo-row"><div class="title">Beast Mode Protein Pack (Large + Protein Smoothie)</div><div class="price">₹529–₹599</div></div>
+          <div class="combo-row"><div class="title">Grand Magician Weekend Feast</div><div class="price">₹699–₹749</div></div>
+        </div>
+      </div>
+
+      <footer><small>Note: These are launch menu & launch prices. Ask staff for meal-prep packs and weekday offers.</small></footer>
     </main>
   </div>
 
 <script>
-  // Theme toggle (tiny)
+  // theme toggle
   (function(){
     const btn = document.getElementById('themeBtn');
     const body = document.body;
@@ -334,7 +335,7 @@
     });
   })();
 
-  // Search (fast, small)
+  // search
   (function(){
     const input = document.getElementById('q');
     const items = Array.from(document.querySelectorAll('.item[data-name]'));
@@ -348,36 +349,20 @@
     });
   })();
 
-  // Minimal dramatic entrance: show watermark + hero, then stagger items
+  // minimal dramatic opening: watermark + header -> stagger items
   (function(){
     const PREF = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const wm = document.getElementById('wm');
     const hero = document.getElementById('hero');
     const items = Array.from(document.querySelectorAll('.item'));
-
     if(PREF){
-      // no animations — show everything instantly
-      wm.classList.add('visible');
-      hero.classList.add('visible');
-      items.forEach(i=> i.style.opacity = 1);
+      wm.classList.add('visible'); hero.classList.add('visible'); items.forEach(i=> i.style.opacity=1);
       return;
     }
-
-    // sequence timings
-    const t0 = 220; // watermark + hero
-    const stagger = 70; // ms between items
-
-    // show watermark & hero
-    setTimeout(()=> wm.classList.add('visible'), 60);
+    const t0 = 180; const stagger = 60;
+    setTimeout(()=> wm.classList.add('visible'), 50);
     setTimeout(()=> hero.classList.add('visible'), t0);
-
-    // stagger items
-    items.forEach((it, idx) => {
-      const delay = t0 + 160 + idx * stagger; // start after hero
-      setTimeout(()=> {
-        it.classList.add('animate');
-      }, delay);
-    });
+    items.forEach((it, idx) => setTimeout(()=> it.classList.add('animate'), t0 + 120 + idx * stagger));
   })();
 </script>
 </body>
