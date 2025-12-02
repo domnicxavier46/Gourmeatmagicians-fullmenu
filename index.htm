@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>GOURMEAT MAGICIAN'S — Menu (Minimal Fast)</title>
-<meta name="description" content="GOURMEAT MAGICIAN'S — Minimal, fast menu. No dish images. Mobile-first." />
+<title>GOURMEAT MAGICIAN'S — Menu (Minimal • Animated)</title>
+<meta name="description" content="GOURMEAT MAGICIAN'S — Minimal, fast menu with subtle cinematic opening. No dish images." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -18,38 +18,65 @@
     --panel-light:#ffffff;
     --muted-light:#596270;
 
-    --price-bg-dark: rgba(255,255,255,0.10);
-    --price-fg-dark: #081018;
-    --price-bg-light: rgba(0,0,0,0.07);
-    --price-fg-light: #081018;
+    /* Price pill contrast: dark theme -> light pill with dark text; light theme -> dark pill with white text */
+    --price-bg-dark: rgba(255,255,255,0.95);   /* almost white pill on dark bg */
+    --price-fg-dark: #081018;                  /* dark text on light pill */
+
+    --price-bg-light: rgba(8,16,24,0.95);      /* almost black pill on light bg */
+    --price-fg-light: #ffffff;                 /* white text on dark pill */
 
     --radius:12px;
     --maxw:980px;
+    --logo-url: url('logo.png');
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue";
   }
 
-  /* base theme (dark by default) */
+  /* base */
   html,body{height:100%; margin:0}
   body{
-    background: radial-gradient(700px 300px at 8% 8%, rgba(230,178,74,0.02), transparent), var(--bg-dark);
+    background:
+      radial-gradient(700px 300px at 8% 8%, rgba(230,178,74,0.02), transparent),
+      var(--bg-dark);
     color: #e9eef3;
     padding:20px;
     display:flex;
     justify-content:center;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
+    overflow-y:auto;
   }
   body.light{
     background: var(--bg-light);
     color:#081018;
   }
 
+  /* watermark (animated on load) */
+  .watermark {
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    display:block;
+    opacity:0;
+    transform: scale(0.98) rotate(-1.2deg);
+    transition: opacity 700ms ease, transform 900ms cubic-bezier(.2,.9,.2,1);
+    background-image: var(--logo-url);
+    background-repeat:no-repeat;
+    background-position: center 34%;
+    background-size: 62vmin;
+    mix-blend-mode: overlay;
+    filter: blur(.6px) saturate(.7);
+  }
+  .watermark.visible{ opacity:0.045; transform: scale(1) rotate(0deg); }
+
+  /* page container */
   .page{
     width:100%;
     max-width:var(--maxw);
     display:flex;
     flex-direction:column;
     gap:14px;
+    z-index:2;
   }
 
   header{
@@ -62,18 +89,15 @@
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border:1px solid rgba(255,255,255,0.03);
     backdrop-filter: blur(4px);
+    transform-origin:center;
+    opacity:0;
+    transform: translateY(8px) scale(.995);
   }
-  .brand{
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  .logo{
-    width:56px; height:56px; border-radius:10px; overflow:hidden;
-    display:grid; place-items:center;
-    background:transparent;
-  }
-  .logo img{ width:100%; height:100%; object-fit:contain; opacity:.95; }
+  header.visible{ opacity:1; transform: translateY(0) scale(1); transition: opacity 600ms ease, transform 600ms cubic-bezier(.2,.9,.2,1); }
+
+  .brand{ display:flex; gap:12px; align-items:center; }
+  .logo{ width:56px; height:56px; border-radius:10px; display:grid; place-items:center; overflow:hidden; background:transparent }
+  .logo img{ width:100%; height:100%; object-fit:contain; opacity:.95 }
 
   .title h1{ margin:0; font-family:"Playfair Display", serif; font-size:18px; color:var(--accent); }
   .title p{ margin:0; font-size:12px; color:var(--muted-dark); }
@@ -86,9 +110,7 @@
     padding:7px 10px;
     display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.03);
   }
-  .search input{
-    background:transparent; border:0; outline:0; color:inherit; width:160px; font-size:14px;
-  }
+  .search input{ background:transparent; border:0; outline:0; color:inherit; width:160px; font-size:14px; }
 
   .theme-btn{
     background:transparent;
@@ -102,99 +124,74 @@
   }
   body.light .theme-btn{ color:var(--muted-light); border-color:rgba(0,0,0,0.06); }
 
-  /* menu list */
-  .menu{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-  }
-
-  .section-title{
-    font-family:"Playfair Display", serif;
-    font-size:16px;
-    color:var(--accent);
-    margin:6px 2px;
-  }
+  /* menu */
+  .menu{ display:flex; flex-direction:column; gap:12px; margin-top:2px; }
+  .section-title{ font-family:"Playfair Display", serif; font-size:16px; color:var(--accent); margin:6px 2px; }
+  .section{ display:flex; flex-direction:column; gap:10px; }
 
   .item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:12px;
-    border-radius:10px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px; border-radius:10px;
     background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
     border:1px solid rgba(255,255,255,0.02);
     min-height:56px;
+    opacity:0; transform: translateY(8px);
   }
   body.light .item{ background: var(--panel-light); border:1px solid rgba(0,0,0,0.05); }
-  .item .left{
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-    max-width:72%;
-  }
+
+  .left{ display:flex; flex-direction:column; gap:4px; max-width:72%; }
   .name{ font-weight:700; font-size:15px; margin:0; }
   .desc{ margin:0; color:var(--muted-dark); font-size:13px; }
   body.light .desc{ color:var(--muted-light); }
 
-  /* price pill visible in both themes */
+  /* PRICE PILL - adaptive and high-contrast */
   .price{
-    font-weight:800;
-    padding:8px 12px;
-    border-radius:20px;
-    min-width:72px;
-    text-align:center;
-    font-size:14px;
-    color:var(--price-fg-dark);
-    background:var(--price-bg-dark);
-    border:1px solid rgba(255,255,255,0.03);
+    font-weight:800; padding:8px 12px; border-radius:999px; min-width:72px; text-align:center;
+    box-shadow: 0 8px 20px rgba(2,6,23,0.45);
+    border:1px solid rgba(255,255,255,0.06);
   }
+  /* dark theme: light pill with dark text */
+  body:not(.light) .price{
+    background: var(--price-bg-dark);
+    color: var(--price-fg-dark);
+    border-color: rgba(255,255,255,0.06);
+  }
+  /* light theme: dark pill with white text */
   body.light .price{
-    color:var(--price-fg-light);
-    background:var(--price-bg-light);
-    border:1px solid rgba(0,0,0,0.06);
+    background: var(--price-bg-light);
+    color: var(--price-fg-light);
+    border-color: rgba(0,0,0,0.06);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
   }
 
-  /* small subtle interactions */
+  /* subtle hover/tap */
   .item:active{ transform: translateY(1px); }
   .tag{ font-size:11px; color:var(--accent); font-weight:800; margin-left:6px; }
 
-  /* simple page-load staggered animation */
-  .item { opacity:0; transform: translateY(8px); }
-  .animate .item { animation: fadeUp .45s ease forwards; }
-  .animate .item:nth-child(1){ animation-delay: 0.05s }
-  .animate .item:nth-child(2){ animation-delay: 0.12s }
-  .animate .item:nth-child(3){ animation-delay: 0.18s }
-  .animate .item:nth-child(4){ animation-delay: 0.24s }
-  .animate .item:nth-child(5){ animation-delay: 0.30s }
-  .animate .item:nth-child(6){ animation-delay: 0.36s }
-  .animate .item:nth-child(7){ animation-delay: 0.42s }
-  @keyframes fadeUp{
-    to{ opacity:1; transform: translateY(0); }
-  }
+  /* stagger animation (kept tiny & performant) */
+  @keyframes fadeUp { to { opacity:1; transform: none; } }
+  .item.animate{ animation: fadeUp .44s ease forwards; }
 
-  /* section spacing for compact mobile */
-  .section { display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+  /* footer */
+  footer{ margin-top:8px; color:var(--muted-dark); font-size:13px; }
 
-  footer{ margin-top:12px; color:var(--muted-dark); font-size:13px; }
-
-  /* responsive: single column / mobile-first */
-  @media(min-width:720px){
+  /* responsive */
+  @media (min-width:720px){
     body{ padding:28px; }
-    .wrap-row{ display:flex; gap:18px; align-items:flex-start; }
   }
-
   @media (prefers-reduced-motion: reduce){
-    .animate .item { animation:none; opacity:1; transform:none; }
+    .watermark, header { transition: none !important; transform:none !important; opacity:1 !important; }
+    .item { animation:none !important; opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
 <body>
-  <div class="page" role="main" aria-label="Gourmeat Magician's menu minimal">
+  <!-- watermark uses a simple background image to keep things fast -->
+  <div id="wm" class="watermark" aria-hidden="true"></div>
 
-    <header>
-      <div class="brand" aria-hidden="false">
+  <div class="page" role="main" aria-label="Gourmeat Magician's menu">
+    <header id="hero" aria-hidden="false">
+      <div class="brand">
         <div class="logo"><img src="logo.png" alt="Gourmeat Magician's logo" /></div>
         <div class="title">
           <h1>GOURMEAT MAGICIAN'S</h1>
@@ -203,23 +200,23 @@
       </div>
 
       <div class="controls" role="search">
-        <div class="search">
+        <div class="search" aria-hidden="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6.2" stroke="currentColor" stroke-width="1.4"></circle></svg>
           <input id="q" type="search" placeholder="Search bowls, smoothies, wraps..." aria-label="Search menu" />
         </div>
-        <button id="theme" class="theme-btn" aria-pressed="false" title="Toggle theme">Theme</button>
+        <button id="themeBtn" class="theme-btn" aria-pressed="false" title="Toggle theme">Theme</button>
       </div>
     </header>
 
-    <main class="menu animate" id="menu">
-      <!-- SIGNATURE Bowls sorted low -> high -->
+    <main class="menu" id="menu" aria-live="polite">
+      <!-- SIGNATURE sorted low -> high -->
       <div class="section" aria-labelledby="sig-title">
         <div id="sig-title" class="section-title">✨ SIGNATURE SPELL-BOWLS</div>
 
         <div class="item" data-name="Ocean Sorcery Prawn Bowl" data-price="₹299">
           <div class="left">
             <div class="name">Ocean Sorcery Prawn Bowl</div>
-            <div class="desc">Grilled prawns with garlic-magic & exotic vegetable toss.</div>
+            <div class="desc">Grilled prawns with garlic-magic & exotic veg.</div>
           </div>
           <div class="price">₹299</div>
         </div>
@@ -227,7 +224,7 @@
         <div class="item" data-name="Fire-Forged Tuna Steak Bowl" data-price="₹299">
           <div class="left">
             <div class="name">Fire-Forged Tuna Steak Bowl</div>
-            <div class="desc">Pan-seared tuna, clean greens & quinoa spell.</div>
+            <div class="desc">Pan-seared tuna, clean greens & quinoa.</div>
           </div>
           <div class="price">₹299</div>
         </div>
@@ -257,7 +254,7 @@
         </div>
       </div>
 
-      <!-- CUSTOMIZE -->
+      <!-- CRAFT-YOUR-MAGIC -->
       <div class="section" aria-labelledby="byob">
         <div id="byob" class="section-title">🌀 CRAFT-YOUR-MAGIC BOWL</div>
         <div class="item">
@@ -324,9 +321,9 @@
   </div>
 
 <script>
-  // Theme toggle (tiny, fast)
+  // Theme toggle (tiny)
   (function(){
-    const btn = document.getElementById('theme');
+    const btn = document.getElementById('themeBtn');
     const body = document.body;
     const saved = localStorage.getItem('gm-theme');
     if(saved === 'light') body.classList.add('light');
@@ -337,7 +334,7 @@
     });
   })();
 
-  // Simple search filter (very small footprint)
+  // Search (fast, small)
   (function(){
     const input = document.getElementById('q');
     const items = Array.from(document.querySelectorAll('.item[data-name]'));
@@ -351,17 +348,35 @@
     });
   })();
 
-  // Start/enable the simple stagger animation on load
+  // Minimal dramatic entrance: show watermark + hero, then stagger items
   (function(){
-    // Allow reduced-motion users to skip animation
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(prefersReduced) {
-      document.querySelectorAll('.item').forEach(i=>{ i.style.opacity=1; i.style.transform='none'; });
+    const PREF = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const wm = document.getElementById('wm');
+    const hero = document.getElementById('hero');
+    const items = Array.from(document.querySelectorAll('.item'));
+
+    if(PREF){
+      // no animations — show everything instantly
+      wm.classList.add('visible');
+      hero.classList.add('visible');
+      items.forEach(i=> i.style.opacity = 1);
       return;
     }
-    // Add the animate class after DOM paint to trigger CSS animations
-    requestAnimationFrame(()=> {
-      document.getElementById('menu').classList.add('animate');
+
+    // sequence timings
+    const t0 = 220; // watermark + hero
+    const stagger = 70; // ms between items
+
+    // show watermark & hero
+    setTimeout(()=> wm.classList.add('visible'), 60);
+    setTimeout(()=> hero.classList.add('visible'), t0);
+
+    // stagger items
+    items.forEach((it, idx) => {
+      const delay = t0 + 160 + idx * stagger; // start after hero
+      setTimeout(()=> {
+        it.classList.add('animate');
+      }, delay);
     });
   })();
 </script>
